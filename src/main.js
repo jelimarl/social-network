@@ -1,5 +1,11 @@
-// Este es el punto de entrada de tu aplicacion
+import { welcome } from "./components/welcome.js"
+import {register} from "./components/register.js"
 
-import { myFunction } from './lib/index.js';
+const root = document.getElementById('root');
 
-myFunction();
+const routes = {
+    '/': welcome,
+    '/register': register
+}
+
+root.appendChild(welcome());
