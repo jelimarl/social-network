@@ -15,8 +15,8 @@ export const welcome = () => {
             <h1 class="welcome__title">SysTEM</h1>
         </div>
         <p class="welcome__message">Where we all add up</p>
-        <button class="button welcome__button">Sign in</button>
-        <button class="button welcome__button">Create account</button>
+        <a href='#' class="button welcome__button">Sign in</a>
+        <a href='#register' class="button welcome__button">Create account</a>
         <p class="welcome__text">or</p>
         <button class="button welcome__button-google">
         <img class="welcome__logo-google" src="https://rotulosmatesanz.com/wp-content/uploads/2017/09/2000px-Google_G_Logo.svg_.png

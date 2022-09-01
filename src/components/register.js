@@ -10,7 +10,7 @@ export const register = () => {
             <img src="https://imagizer.imageshack.com/img924/341/OKd1u8.png
             " alt="logo" class="register__logo">
             <h2 class="register__title">Create account</h2>
-            <form action="">
+            <form action="" class="register__form">
             <label for="register__username">Username</label>
             <input id="register__username" type="text">
             <label for="register__email">Email</label>
