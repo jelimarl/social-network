@@ -13,8 +13,8 @@ export const welcome = () => {
             <img class="welcome__logo" src="https://imagizer.imageshack.com/img924/341/OKd1u8.png
             " alt="logo">
             <h1 class="welcome__title">SysTEM</h1>
+            <p class="welcome__message">Where we all add up</p>
         </div>
-        <p class="welcome__message">Where we all add up</p>
         <a href='#' class="button welcome__button">Sign in</a>
         <a href='#register' class="button welcome__button">Create account</a>
         <p class="welcome__text">or</p>

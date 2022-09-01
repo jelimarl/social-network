@@ -3,9 +3,9 @@
     --secondary-color: #B377FF;
     --primary-color: #5899E2;
     --font-family: 'Nunito', sans-serif;
-    --background: rgb(179,119,255);
-    --background-gradient: linear-gradient(130deg, rgba(179,119,255,1) 0%, rgba(88,153,226,1) 82%);
-    --shadow: rgba(0,0,0,0.3) 0 4px 4px;
+    --background: rgb(179, 119, 255);
+    --background-gradient: linear-gradient(130deg, rgba(179, 119, 255, 1) 0%, rgba(88, 153, 226, 1) 82%);
+    --shadow: rgba(0, 0, 0, 0.3) 0 4px 4px;
 }
 
 * {
@@ -19,20 +19,23 @@ html {
     font-family: var(--font-family);
 }
 
-.sectionWelcome, .sectionRegister {
+.sectionWelcome,
+.sectionRegister {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background: var(--background);
     background: var(--background-gradient);
 }
 
-.welcome__figure, .welcome__logo-brand {
+.welcome__figure,
+.welcome__logo-brand {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -42,7 +45,8 @@ html {
     width: 70%;
 }
 
-.welcome__container, .register__container {
+.welcome__container,
+.register__container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -85,28 +89,33 @@ html {
     cursor: pointer;
 }
 
-.welcome__button, .register__button {
+.welcome__button,
+.register__button {
     background-color: var(--emphasis-color);
     color: white;
     font-weight: 900;
     text-shadow: var(--shadow);
 }
 
-.welcome__text, .register__title, .register__text {
+.welcome__text,
+.register__title,
+.register__text {
     color: white;
     font-weight: 900;
     text-shadow: var(--shadow);
     font-size: 2rem;
 }
 
-.welcome__button-google, .register__button-google {
+.welcome__button-google,
+.register__button-google {
     font-weight: 700;
     font-family: var(--font-family);
     color: #757575;
     background-color: white;
 }
 
-.welcome__logo-google, .register__logo-google {
+.welcome__logo-google,
+.register__logo-google {
     width: 2.5rem;
     margin-right: 1rem;
 }
@@ -145,10 +154,18 @@ html {
     border-radius: 3rem;
     border: none;
     box-shadow: var(--shadow);
+    padding-left: 2rem;
+    outline: none;
+    font-size: 1.8rem;
+    font-family: var(--font-family);
+}
+
+.register__form input:invalid:focus {
+    outline: solid red 2px;
 }
 
 .register__button {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     width: 100%;
     font-family: var(--font-family);
 }
@@ -164,4 +181,154 @@ html {
 
 .register__text:last-child {
     margin-top: 1rem;
+}
+
+@media (max-width:325px) {
+    .welcome__title {
+        font-size: 3.5rem;
+    }
+
+    .welcome__illustration {
+        width: 60%;
+    }
+
+    .welcome__logo {
+        width: 4rem;
+    }
+
+    .welcome__message {
+        font-size: 2.2rem;
+    }
+
+    .button {
+        width: 75%;
+        font-size: 1.8rem;
+    }
+
+    .welcome__text {
+        font-size: 1.8rem;
+    }
+
+    .sectionRegister {
+        padding: 1rem 0;
+    }
+
+    .register__container {
+        gap: 0.7rem;
+    }
+
+    .register__logo {
+        width: 4.5rem;
+    }
+
+    .register__title {
+        font-size: 2.2rem;
+    }
+
+    .register__form {
+        width: 75%;
+    }
+
+    .register__form label {
+        margin-top: 1rem;
+        font-size: 1.8rem;
+    }
+
+    .register__button {
+        margin-top: 1.8rem;
+        width: 100%;
+    }
+
+    .register__text {
+        font-size: 1.8rem;
+    }
+}
+
+@media (min-width:744px) {
+
+    .welcome__illustration {
+        width: 55%;
+    }
+
+    .welcome__container {
+        gap: 2.5rem;
+    }
+
+    .welcome__title {
+        font-size: 8rem;
+    }
+
+    .welcome__logo {
+        width: 9rem;
+    }
+
+    .welcome__message {
+        font-size: 5rem;
+    }
+
+    .button {
+        padding: 1.5rem 0;
+        width: 65%;
+        font-size: 3.5rem;
+        border-radius: 5rem;
+    }
+
+    .welcome__button {
+        font-weight: 700;
+    }
+
+    .welcome__text {
+        font-size: 3.5rem;
+        font-weight: 700;
+    }
+
+    .welcome__logo-google,
+    .register__logo-google {
+        width: 4rem;
+        margin-right: 1rem;
+    }
+
+    .register__container {
+        gap: 0.7rem;
+    }
+
+    .register__logo {
+        width: 10rem;
+    }
+
+    .register__title {
+        font-size: 4.8rem;
+    }
+
+    .register__form {
+        width: 65%;
+    }
+
+    .register__form label {
+        margin-top: 2rem;
+        font-size: 3rem;
+    }
+
+    .register__form input {
+        padding: 3rem;
+        font-size: 3rem;
+    }
+
+    .register__button {
+        margin-top: 3rem;
+        width: 100%;
+        font-weight: 700;
+    }
+
+    .register__text {
+        font-size: 3.2rem;
+        margin: 1.5rem 0;
+    }
+
+    .register__text:last-child {
+        font-size: 3.5rem;
+        margin-top: 3rem;
+    }
+
+
 }

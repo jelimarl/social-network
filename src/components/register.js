@@ -12,11 +12,11 @@ export const register = () => {
             <h2 class="register__title">Create account</h2>
             <form action="" class="register__form">
             <label for="register__username">Username</label>
-            <input id="register__username" type="text">
+            <input id="register__username" type="text" required maxlength='20'>
             <label for="register__email">Email</label>
-            <input id="register__email" type="email">
+            <input id="register__email" type="email" required>
             <label for="register__password">Password</label>
-            <input id="register__password" type="password">
+            <input id="register__password" type="password" required minlength='8'>
             <button class="button register__button" type="submit">Create</button>
             </form>
             <p class="register__text">or</p>  
