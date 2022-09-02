@@ -343,7 +343,131 @@ html {
     }
 }
 
-@media (min-width: 1024px) {
+@media (min-width:1024px) {
+    .sectionWelcome,
+    .sectionRegister {
+        flex-direction: row;
+    }
+
+    .welcome__figure {
+        padding-left: 5%;
+    }
+
+    .welcome__illustration {
+        width: 100%;
+    }
+
+    .welcome__container,
+    .register__container {
+        width: 60%;
+        padding-right: 8rem;
+    }
+
+    .welcome__container {
+        gap: 1.8rem;
+    }
+
+    .welcome__logo {
+        width: 5rem;
+    }
+
+    .welcome__title {
+        font-size: 4rem;
+    }
+
+    .welcome__message {
+       
+        font-size: 3rem;
+    }
+
+    .button {
+        width: 75%;
+        font-size: 1.8rem;
+        font-weight: 800;
+    }
+
+    .welcome__text {
+        font-size: 1.8rem;
+        font-weight: 800;
+    }
+
+    .welcome__button-google,
+    .register__button-google {
+        font-weight: 700;
+    }
+
+    .welcome__logo-google {
+        width: 2.4rem;
+        margin-right: 1rem;
+    }
+
+    .register__container {
+        padding-right: 8rem;
+    }
+
+    .register__figure {
+        width: 100%;
+        display: block;
+        padding-left: 5%;
+    }
+
+    .register__illustration {
+        width: 100%;
+    }
+
+    .register__logo {
+        width: 5rem;
+    }
+
+    .register__title {
+        font-size: 2.3rem;
+    }
+
+    .register__form {
+        width: 80%;
+    }
+
+    .register__form label {
+        margin-top: 1.2rem;
+        font-size: 1.8rem;
+    }
+
+    .register__form input {
+        padding: 2rem;
+        font-size: 1.8rem;
+    }
+
+    .register__button {
+        margin-top: 2.5rem;
+        width: 100%;
+        font-size: 1.8rem;
+        font-weight: 800;
+    }
+
+    .register__text {
+        font-size: 1.7rem;
+        font-weight: 800;
+        margin: 0.8rem 0;
+    }
+
+    .register__button-google {
+        width: 80%;
+        font-size: 1.8rem;
+    }
+
+    .register__logo-google {
+        width: 2.4rem;
+        margin-right: 1rem;
+    }
+
+    .register__text:last-child {
+        font-size: 1.8rem;
+        margin-top: 2rem;
+        font-weight: 700;
+    }
+}
+
+@media (min-width: 1480px) {
     .sectionWelcome,
     .sectionRegister {
         flex-direction: row;
