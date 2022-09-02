@@ -4,8 +4,8 @@ export const welcome = () => {
     sectionWelcome.innerHTML =
     `
     <figure class="welcome__figure">
-        <img class="welcome__illustration" src="https://imagizer.imageshack.com/img922/3091/JEOR6i.png
-        " alt="illustration">
+        <!--<img class="welcome__illustration" src="https://imagizer.imageshack.com/img922/3091/JEOR6i.png" alt="illustration">-->
+        <img class="welcome__illustration" src="https://imagizer.imageshack.com/img923/4224/CKf4zk.png" alt="illustration">
     </figure>
 
     <div class="welcome__container">

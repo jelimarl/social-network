@@ -4,7 +4,8 @@ export const register = () => {
         sectionRegister.innerHTML =
         `
         <figure class="register__figure">
-            <img src="https://imagizer.imageshack.com/img922/3091/JEOR6i.png" alt="illustration" class="register__illustration">
+            <!--<img src="https://imagizer.imageshack.com/img922/3091/JEOR6i.png" alt="illustration" class="register__illustration">-->
+            <img src="https://imagizer.imageshack.com/img923/4224/CKf4zk.png" alt="illustration" class="register__illustration">
         </figure>
         <div class="register__container">
             <img src="https://imagizer.imageshack.com/img924/341/OKd1u8.png
