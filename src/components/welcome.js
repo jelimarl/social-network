@@ -7,7 +7,7 @@ export const welcome = () => {
         <img class="welcome__illustration" src="https://imagizer.imageshack.com/img922/3091/JEOR6i.png
         " alt="illustration">
     </figure>
-  
+
     <div class="welcome__container">
         <div class="welcome__logo-brand">
             <img class="welcome__logo" src="https://imagizer.imageshack.com/img924/341/OKd1u8.png

@@ -20,4 +20,4 @@ const showSection = () => {
 
 window.addEventListener('hashchange', showSection)
 
-window.addEventListener('load', showSection) 
+window.addEventListener('load', showSection)
