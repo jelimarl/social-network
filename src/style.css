@@ -344,6 +344,9 @@ html {
 }
 
 @media (min-width: 1024px) {
+}
+
+@media (min-width: 1480px) {
     .sectionWelcome,
     .sectionRegister {
         flex-direction: row;
