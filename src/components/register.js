@@ -1,3 +1,5 @@
+import  { createUser } from "../lib/auth.js"
+
 export const register = () => {
     const sectionRegister = document.createElement('section');
         sectionRegister.className = 'sectionRegister';
@@ -28,5 +30,27 @@ export const register = () => {
             <p  class="register__text">Already have an account?<a href=""> Sign in</a></p>
         </div>
         `
-    return sectionRegister;
-}
+
+        const registerForm = sectionRegister.querySelector("#register__form-id");
+        const registerButton = sectionRegister.querySelector("#register__button-id");
+        const registerUsername= sectionRegister.querySelector("#register__username");
+        const registerEmail = sectionRegister.querySelector("#register__email");
+        const registerPassword = sectionRegister.querySelector("#register__password");
+    
+        registerForm.addEventListener("submit", (event) => {
+            createUser(registerEmail.value, registerPassword.value)
+            .then(()=>{
+                window.location.hash = '#wall'
+            })
+            .catch((error) => {
+                console.log(error);
+                const errorCode = error.code;
+                console.log(errorCode);
+                const errorMessage = error.message;
+                console.log(errorMessage);
+              })
+        } )
+        return sectionRegister;
+    }
+
+    
