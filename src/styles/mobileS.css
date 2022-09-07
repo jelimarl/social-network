@@ -1,0 +1,68 @@
+:root {
+    --emphasis-color: #0A004A;
+    --secondary-color: #B377FF;
+    --primary-color: #5899E2;
+    --font-family: 'Nunito', sans-serif;
+    --background: rgb(179, 119, 255);
+    --background-gradient: linear-gradient(130deg, rgba(179, 119, 255, 1) 0%, rgba(88, 153, 226, 1) 82%);
+    --shadow: rgba(0, 0, 0, 0.3) 0 4px 4px;
+}
+
+.welcome__title {
+    font-size: 3.5rem;
+}
+
+.welcome__illustration {
+    width: 60%;
+}
+
+.welcome__logo {
+    width: 4rem;
+}
+
+.welcome__message {
+    font-size: 2.2rem;
+}
+
+.button {
+    width: 75%;
+    font-size: 1.8rem;
+}
+
+.welcome__text {
+    font-size: 1.8rem;
+}
+
+.sectionRegister {
+    padding: 1rem 0;
+}
+
+.register__container {
+    gap: 0.7rem;
+}
+
+.register__logo {
+    width: 4.5rem;
+}
+
+.register__title {
+    font-size: 2.2rem;
+}
+
+.register__form {
+    width: 75%;
+}
+
+.register__form label {
+    margin-top: 1rem;
+    font-size: 1.8rem;
+}
+
+.register__button {
+    margin-top: 1.8rem;
+    width: 100%;
+}
+
+.register__text {
+    font-size: 1.8rem;
+}

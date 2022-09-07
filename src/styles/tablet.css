@@ -1,0 +1,93 @@
+:root {
+    --emphasis-color: #0A004A;
+    --secondary-color: #B377FF;
+    --primary-color: #5899E2;
+    --font-family: 'Nunito', sans-serif;
+    --background: rgb(179, 119, 255);
+    --background-gradient: linear-gradient(130deg, rgba(179, 119, 255, 1) 0%, rgba(88, 153, 226, 1) 82%);
+    --shadow: rgba(0, 0, 0, 0.3) 0 4px 4px;
+}
+
+.welcome__illustration {
+    width: 55%;
+}
+
+.welcome__container {
+    gap: 2.5rem;
+}
+
+.welcome__title {
+    font-size: 8rem;
+}
+
+.welcome__logo {
+    width: 9rem;
+}
+
+.welcome__message {
+    font-size: 5rem;
+}
+
+.button {
+    padding: 1.5rem 0;
+    width: 65%;
+    font-size: 3.5rem;
+    border-radius: 5rem;
+}
+
+.welcome__button {
+    font-weight: 700;
+}
+
+.welcome__text {
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+.welcome__logo-google,
+.register__logo-google {
+    width: 4rem;
+    margin-right: 1rem;
+}
+
+.register__container {
+    gap: 0.7rem;
+}
+
+.register__logo {
+    width: 10rem;
+}
+
+.register__title {
+    font-size: 4.8rem;
+}
+
+.register__form {
+    width: 65%;
+}
+
+.register__form label {
+    margin-top: 2rem;
+    font-size: 3rem;
+}
+
+.register__form input {
+    padding: 3rem;
+    font-size: 3rem;
+}
+
+.register__button {
+    margin-top: 3rem;
+    width: 100%;
+    font-weight: 700;
+}
+
+.register__text {
+    font-size: 3.2rem;
+    margin: 1.5rem 0;
+}
+
+.register__text:last-child {
+    font-size: 3.5rem;
+    margin-top: 3rem;
+}
