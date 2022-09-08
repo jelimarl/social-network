@@ -97,13 +97,6 @@ html {
     text-shadow: var(--shadow);
 }
 
-.welcome__button:hover,
-.register__button:hover {
-    background-color: #802CEA;
-    color: white;
-    box-shadow: rgb(203, 170, 245) 0 0 1.5rem;
-}
-
 .welcome__text,
 .register__title,
 .register__text {
@@ -188,6 +181,13 @@ html {
     margin-top: 2rem;
     width: 100%;
     font-family: var(--font-family);
+}
+
+.welcome__button:hover,
+.register__button:hover {
+    background-color: #802CEA;
+    color: white;
+    box-shadow: rgb(203, 170, 245) 0 0 1.5rem;
 }
 
 .register__text {
