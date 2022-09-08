@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 // importamos la funcion que vamos a testear
 import { myFunction } from '../src/lib/index';
 

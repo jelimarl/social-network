@@ -12,7 +12,7 @@ const template = {
 };
 
 const showSection = () => {
-  let hash = window.location.hash;
+  const hash = window.location.hash;
   root.replaceChildren(template[hash]);
 };
 

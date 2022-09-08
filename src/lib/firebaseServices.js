@@ -1,18 +1,13 @@
-import { firebaseConfig } from './configFirebase.js';
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js';
+/* eslint-disable import/no-unresolved */
 import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js';
+import { firebaseConfig } from './configFirebase.js';
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
 // Authentication
 export function createUser(email, password) {
   const auth = getAuth();
-  return createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-    })
-};
-
-
+  return createUserWithEmailAndPassword(auth, email, password);
+}

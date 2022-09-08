@@ -35,12 +35,8 @@ export const register = () => {
   const registerForm = sectionRegister.querySelector('#register__form-id');
   const registerEmail = sectionRegister.querySelector('#register__email');
   const registerPassword = sectionRegister.querySelector('#register__password');
-  const registerErrorInvalid = sectionRegister.querySelector(
-    '#register__invalid-email'
-  );
-  const registerErrorInUse = sectionRegister.querySelector(
-    '#register__already-in-use-email'
-  );
+  const registerErrorInvalid = sectionRegister.querySelector('#register__invalid-email');
+  const registerErrorInUse = sectionRegister.querySelector('#register__already-in-use-email');
 
   registerForm.addEventListener('submit', (event) => {
     createUser(registerEmail.value, registerPassword.value)
