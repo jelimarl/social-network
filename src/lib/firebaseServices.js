@@ -3,9 +3,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase
 import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 
 // Initialize Firebase
-
 const app = initializeApp(firebaseConfig);
 
+// Authentication
 export function createUser(email, password) {
   const auth = getAuth();
   console.log(email);

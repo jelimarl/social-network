@@ -13,9 +13,9 @@ const template = {
 
 const showSection = () => {
     let hash = window.location.hash;
-    root.replaceChildren(template[hash]);  
+    root.replaceChildren(template[hash]);
 }
 
-window.addEventListener('hashchange', showSection)
 window.addEventListener('load', showSection)
+window.addEventListener('hashchange', showSection)
 
