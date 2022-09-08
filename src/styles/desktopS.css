@@ -100,6 +100,10 @@
     font-size: 1.8rem;
 }
 
+.error {
+    font-size: 1.5rem;
+}
+
 .register__button {
     margin-top: 2.5rem;
     width: 100%;

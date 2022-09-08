@@ -176,6 +176,14 @@ html {
     outline: solid red 2px;
 }
 
+.error {
+    margin: 0.6rem 0 0 1.2rem;
+    color: var(--emphasis-color);
+    font-weight: 700;
+    font-size: 1.5rem;
+    display: none;
+}
+
 .register__button {
     margin-top: 2rem;
     width: 100%;

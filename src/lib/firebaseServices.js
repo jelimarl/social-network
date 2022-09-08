@@ -13,15 +13,7 @@ export function createUser(email, password) {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      // window.location.hash = '#wall'
-      // ...
     })
-  // .catch((error) => {
-  //   console.log(error);
-  //   const errorCode = error.code;
-  //   const errorMessage = error.message;
-  //   // ..
-  // });
 };
 
 

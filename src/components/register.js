@@ -1,10 +1,9 @@
-import  { createUser } from "../lib/auth.js"
+import { registerUsers } from "../main";
 
 export const register = () => {
-    const sectionRegister = document.createElement('section');
-        sectionRegister.className = 'sectionRegister';
-        sectionRegister.innerHTML =
-        `
+    const sectionRegister = document.createElement("section");
+    sectionRegister.className = "sectionRegister";
+    sectionRegister.innerHTML = `
         <figure class="register__figure">
             <!--<img src="https://imagizer.imageshack.com/img922/3091/JEOR6i.png" alt="illustration" class="register__illustration">-->
             <img src="https://imagizer.imageshack.com/img923/4224/CKf4zk.png" alt="illustration" class="register__illustration">
@@ -18,6 +17,8 @@ export const register = () => {
             <input id="register__username" type="text" required maxlength='20'>
             <label for="register__email">Email</label>
             <input id="register__email" type="email" required>
+            <p class="error register__message-error" id="register__already-in-use-email">Email already in use</p>
+            <p class="error register__message-error" id="register__invalid-email">Invalid email</p>
             <label for="register__password">Password</label>
             <input id="register__password" type="password" required minlength='8'>
             <button id="register__button-id" class="button register__button" type="submit">Create</button>
@@ -29,28 +30,8 @@ export const register = () => {
             </button>
             <p  class="register__text">Already have an account?<a href=""> Sign in</a></p>
         </div>
-        `
+        `;
 
-        const registerForm = sectionRegister.querySelector("#register__form-id");
-        const registerButton = sectionRegister.querySelector("#register__button-id");
-        const registerUsername= sectionRegister.querySelector("#register__username");
-        const registerEmail = sectionRegister.querySelector("#register__email");
-        const registerPassword = sectionRegister.querySelector("#register__password");
-    
-        registerForm.addEventListener("submit", (event) => {
-            createUser(registerEmail.value, registerPassword.value)
-            .then(()=>{
-                window.location.hash = '#wall'
-            })
-            .catch((error) => {
-                console.log(error);
-                const errorCode = error.code;
-                console.log(errorCode);
-                const errorMessage = error.message;
-                console.log(errorMessage);
-              })
-        } )
-        return sectionRegister;
-    }
-
-    
+    registerUsers();
+    return sectionRegister;
+};
