@@ -76,6 +76,11 @@
     font-size: 3rem;
 }
 
+.error {
+    margin: 0.7rem 0 0 1.5rem;
+    font-size: 2.3rem;
+}
+
 .register__button {
     margin-top: 3rem;
     width: 100%;

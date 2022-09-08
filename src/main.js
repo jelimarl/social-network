@@ -1,42 +1,32 @@
-import { welcome } from "./components/welcome.js"
-import { register } from "./components/register.js"
-import { wall } from "./components/wall.js"
+import { createUser } from "./lib/firebaseServices.js";
 
-// Routing events
-const root = document.getElementById('root');
+export const registerUsers = ()=>{
+    const registerForm = sectionRegister.querySelector("#register__form-id");
+    const registerEmail = sectionRegister.querySelector("#register__email");
+    const registerPassword = sectionRegister.querySelector("#register__password");
+    const registerErrorInvalid = sectionRegister.querySelector("#register__invalid-email");
+    const registerErrorInUse = sectionRegister.querySelector("#register__already-in-use-email");
 
-const template = {
-    '': welcome(),
-    '#register': register(),
-    '#wall': wall(),
+    registerForm.addEventListener("submit", (event) => {
+        createUser(registerEmail.value, registerPassword.value)
+            .then(() => {
+                window.location.hash = "#wall";
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                switch (errorCode) {
+                    case "auth/email-already-in-use":
+                        registerErrorInUse.style.display = "block";
+                        registerErrorInvalid.style.display = "none";
+                        break;
+                    case "auth/invalid-email":
+                        registerErrorInvalid.style.display = "block";
+                        registerErrorInUse.style.display = "none";
+                        break;
+                    default:
+                        break;
+                }
+            });
+        event.preventDefault();
+    });
 }
-
-const showSection = () => {
-    let hash = window.location.hash;
-    root.replaceChildren(template[hash]);
-}
-
-window.addEventListener('hashchange', showSection)
-window.addEventListener('load', showSection)
-
-
-const registerForm = sectionRegister.querySelector("#register__form-id");
-const registerButton = sectionRegister.querySelector("#register__button-id");
-const registerUsername= sectionRegister.querySelector("#register__username");
-const registerEmail = sectionRegister.querySelector("#register__email");
-const registerPassword = sectionRegister.querySelector("#register__password");
-
-registerForm.addEventListener("submit", (event) => {
-    createUser(registerEmail.value, registerPassword.value)
-    .then(()=>{
-        window.location.hash = '#wall';
-        window.addEventListener('hashchange', showSection);
-    })
-    .catch((error) => {
-        console.log(error);
-        const errorCode = error.code;
-        console.log(errorCode);
-        const errorMessage = error.message;
-        console.log(errorMessage);
-    })
-} )
