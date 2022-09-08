@@ -1,8 +1,9 @@
-import { firebaseConfig } from "./firebaseConfig.js";
+import { firebaseConfig } from "./configFirebase.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 
 // Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
 
 export function createUser(email, password) {
