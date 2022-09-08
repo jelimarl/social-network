@@ -1,8 +1,7 @@
 export const welcome = () => {
-    const sectionWelcome = document.createElement('section');
-    sectionWelcome.className = 'sectionWelcome';
-    sectionWelcome.innerHTML =
-    `
+  const sectionWelcome = document.createElement("section");
+  sectionWelcome.className = "sectionWelcome";
+  sectionWelcome.innerHTML = `
     <figure class="welcome__figure">
         <!--<img class="welcome__illustration" src="https://imagizer.imageshack.com/img922/3091/JEOR6i.png" alt="illustration">-->
         <img class="welcome__illustration" src="https://imagizer.imageshack.com/img923/4224/CKf4zk.png" alt="illustration">
@@ -22,6 +21,6 @@ export const welcome = () => {
         <img class="welcome__logo-google" src="https://rotulosmatesanz.com/wp-content/uploads/2017/09/2000px-Google_G_Logo.svg_.png
         " alt="logo-google">Sign in with Google</button>
     </div>
-    `
-    return sectionWelcome;
-}
+    `;
+  return sectionWelcome;
+};

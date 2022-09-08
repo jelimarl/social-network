@@ -8,7 +8,6 @@ const app = initializeApp(firebaseConfig);
 // Authentication
 export function createUser(email, password) {
   const auth = getAuth();
-  console.log(email);
   return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in

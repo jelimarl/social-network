@@ -1,9 +1,9 @@
 import { createUser } from "../lib/firebaseServices.js";
 
 export const register = () => {
-    const sectionRegister = document.createElement("section");
-    sectionRegister.className = "sectionRegister";
-    sectionRegister.innerHTML = `
+  const sectionRegister = document.createElement("section");
+  sectionRegister.className = "sectionRegister";
+  sectionRegister.innerHTML = `
         <figure class="register__figure">
             <!--<img src="https://imagizer.imageshack.com/img922/3091/JEOR6i.png" alt="illustration" class="register__illustration">-->
             <img src="https://imagizer.imageshack.com/img923/4224/CKf4zk.png" alt="illustration" class="register__illustration">
@@ -32,34 +32,38 @@ export const register = () => {
         </div>
         `;
 
-        const registerForm = sectionRegister.querySelector("#register__form-id");
-        const registerEmail = sectionRegister.querySelector("#register__email");
-        const registerPassword = sectionRegister.querySelector("#register__password");
-        const registerErrorInvalid = sectionRegister.querySelector("#register__invalid-email");
-        const registerErrorInUse = sectionRegister.querySelector("#register__already-in-use-email");
+  const registerForm = sectionRegister.querySelector("#register__form-id");
+  const registerEmail = sectionRegister.querySelector("#register__email");
+  const registerPassword = sectionRegister.querySelector("#register__password");
+  const registerErrorInvalid = sectionRegister.querySelector(
+    "#register__invalid-email"
+  );
+  const registerErrorInUse = sectionRegister.querySelector(
+    "#register__already-in-use-email"
+  );
 
-        registerForm.addEventListener("submit", (event) => {
-            createUser(registerEmail.value, registerPassword.value)
-                .then(() => {
-                    window.location.hash = "#wall";
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    switch (errorCode) {
-                        case "auth/email-already-in-use":
-                            registerErrorInUse.style.display = "block";
-                            registerErrorInvalid.style.display = "none";
-                            break;
-                        case "auth/invalid-email":
-                            registerErrorInvalid.style.display = "block";
-                            registerErrorInUse.style.display = "none";
-                            break;
-                        default:
-                            break;
-                    }
-                });
-            event.preventDefault();
-        });
+  registerForm.addEventListener("submit", (event) => {
+    createUser(registerEmail.value, registerPassword.value)
+      .then(() => {
+        window.location.hash = "#wall";
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        switch (errorCode) {
+          case "auth/email-already-in-use":
+            registerErrorInUse.style.display = "block";
+            registerErrorInvalid.style.display = "none";
+            break;
+          case "auth/invalid-email":
+            registerErrorInvalid.style.display = "block";
+            registerErrorInUse.style.display = "none";
+            break;
+          default:
+            break;
+        }
+      });
+    event.preventDefault();
+  });
 
-    return sectionRegister;
+  return sectionRegister;
 };
