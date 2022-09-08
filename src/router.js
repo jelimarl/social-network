@@ -1,14 +1,14 @@
-import { welcome } from "./components/welcome.js";
-import { register } from "./components/register.js";
-import { wall } from "./components/wall.js";
+import { welcome } from './components/welcome.js';
+import { register } from './components/register.js';
+import { wall } from './components/wall.js';
 
 // Routing events
-const root = document.getElementById("root");
+const root = document.getElementById('root');
 
 const template = {
-  "": welcome(),
-  "#register": register(),
-  "#wall": wall(),
+  '': welcome(),
+  '#register': register(),
+  '#wall': wall(),
 };
 
 const showSection = () => {
@@ -16,5 +16,5 @@ const showSection = () => {
   root.replaceChildren(template[hash]);
 };
 
-window.addEventListener("load", showSection);
-window.addEventListener("hashchange", showSection);
+window.addEventListener('load', showSection);
+window.addEventListener('hashchange', showSection);

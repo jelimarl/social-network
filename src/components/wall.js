@@ -1,3 +1,3 @@
 export const wall = () => {
-  console.log("hola");
+  console.log('hola');
 };

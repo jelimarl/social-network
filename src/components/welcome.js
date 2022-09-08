@@ -1,6 +1,6 @@
 export const welcome = () => {
-  const sectionWelcome = document.createElement("section");
-  sectionWelcome.className = "sectionWelcome";
+  const sectionWelcome = document.createElement('section');
+  sectionWelcome.className = 'sectionWelcome';
   sectionWelcome.innerHTML = `
     <figure class="welcome__figure">
         <!--<img class="welcome__illustration" src="https://imagizer.imageshack.com/img922/3091/JEOR6i.png" alt="illustration">-->
