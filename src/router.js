@@ -11,7 +11,7 @@ const template = {
   '#wall': wall(),
 };
 
-const showSection = () => {
+export const showSection = () => {
   const hash = window.location.hash;
   root.replaceChildren(template[hash]);
 };
