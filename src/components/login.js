@@ -1,3 +1,5 @@
+import { loginUser } from '../lib/firebaseServices.js';
+
 export const login = () => {
   const sectionLogin = document.createElement('section');
   sectionLogin.className = 'sectionLogin';
@@ -27,5 +29,33 @@ export const login = () => {
             <p  class="register__text">Don't you have an account yet?<br><a href="#register">Create account</a></p>
         </div>
         `;
+
+  const loginForm = sectionLogin.querySelector('#login__form-id');
+  const loginEmail = sectionLogin.querySelector('#login__email');
+  const loginPassword = sectionLogin.querySelector('#login__password');
+  // const loginErrorInvalid = sectionLogin.querySelector('#login__invalid-email');
+  // const loginErrorInUse = sectionLogin.querySelector('#login__already-in-use-email');
+
+  loginForm.addEventListener('submit', (event) => {
+    loginUser(loginEmail.value, loginPassword.value)
+      .then(() => {
+        window.location.hash = '#wall';
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        // switch (errorCode) {
+        //   case 'auth/email-already-in-use':
+        //     registerErrorInUse.style.display = 'block';
+        //     registerErrorInvalid.style.display = 'none';
+        //     break;
+        //   case 'auth/invalid-email':
+        //     registerErrorInvalid.style.display = 'block';
+        //     registerErrorInUse.style.display = 'none';
+        //     break;
+        //   default:
+        //     break;
+      });
+    event.preventDefault();
+  });
   return sectionLogin;
 };
