@@ -15,10 +15,10 @@ export const login = () => {
             <form action="" class="register__form" id="login__form-id">
             <label for="login__email">Email</label>
             <input id="login__email" type="email" required>
-            <p class="error register__message-error" id="login__already-in-use-email">Email already in use</p>
-            <p class="error register__message-error" id="login__invalid-email">Invalid email</p>
+            <p class="error login__message-error" id="login__email-not-found">Email not found</p>
             <label for="login__password">Password</label>
             <input id="login__password" type="password" required minlength='8'>
+            <p class="error login__message-error" id="login__wrong-password">Wrong Password</p>
             <button id="login__button-id" class="button register__button" type="submit">Log in</button>
             </form>
             <p class="register__text">or</p>
@@ -33,8 +33,8 @@ export const login = () => {
   const loginForm = sectionLogin.querySelector('#login__form-id');
   const loginEmail = sectionLogin.querySelector('#login__email');
   const loginPassword = sectionLogin.querySelector('#login__password');
-  // const loginErrorInvalid = sectionLogin.querySelector('#login__invalid-email');
-  // const loginErrorInUse = sectionLogin.querySelector('#login__already-in-use-email');
+  const loginErrorEmailNotFound = sectionLogin.querySelector('#login__email-not-found');
+  const loginErrorWrongPassword = sectionLogin.querySelector('#login__wrong-password');
 
   loginForm.addEventListener('submit', (event) => {
     loginUser(loginEmail.value, loginPassword.value)
@@ -43,17 +43,18 @@ export const login = () => {
       })
       .catch((error) => {
         const errorCode = error.code;
-        // switch (errorCode) {
-        //   case 'auth/email-already-in-use':
-        //     registerErrorInUse.style.display = 'block';
-        //     registerErrorInvalid.style.display = 'none';
-        //     break;
-        //   case 'auth/invalid-email':
-        //     registerErrorInvalid.style.display = 'block';
-        //     registerErrorInUse.style.display = 'none';
-        //     break;
-        //   default:
-        //     break;
+        switch (errorCode) {
+          case 'auth/user-not-found':
+            loginErrorEmailNotFound.style.display = 'block';
+            loginErrorWrongPassword.style.display = 'none';
+            break;
+          case 'auth/wrong-password':
+            loginErrorWrongPassword.style.display = 'block';
+            loginErrorEmailNotFound.style.display = 'none';
+            break;
+          default:
+            break;
+        }
       });
     event.preventDefault();
   });

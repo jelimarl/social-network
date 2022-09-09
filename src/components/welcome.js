@@ -1,3 +1,5 @@
+import { googleSignIn } from '../lib/firebaseServices.js';
+
 export const welcome = () => {
   const sectionWelcome = document.createElement('section');
   sectionWelcome.className = 'sectionWelcome';
@@ -22,5 +24,23 @@ export const welcome = () => {
         " alt="logo-google">Sign in with Google</button>
     </div>
     `;
+
+  const googleButton = sectionWelcome.querySelector('.welcome__button-google');
+  googleButton.addEventListener('click', () => {
+    googleSignIn()
+      .then(() => {
+        window.location.hash = '#wall';
+      }).catch((error) => {
+      // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+      });
+  });
+
   return sectionWelcome;
 };
