@@ -9,7 +9,7 @@
 }
 
 .sectionWelcome,
-.sectionRegister {
+.sectionRegister, .sectionLogin {
     flex-direction: row;
 }
 

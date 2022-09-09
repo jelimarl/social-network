@@ -28,7 +28,7 @@ export const register = () => {
             <img class="register__logo-google" src="https://rotulosmatesanz.com/wp-content/uploads/2017/09/2000px-Google_G_Logo.svg_.png
                 " alt="logo-google">Sign in with Google
             </button>
-            <p  class="register__text">Already have an account?<a href=""> Sign in</a></p>
+            <p  class="register__text">Already have an account? <a href="#login">Log in</a></p>
         </div>
         `;
 
