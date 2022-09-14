@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider,
-  signInWithRedirect, getRedirectResult, signInWithPopup,
+  signInWithPopup,
 } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js';
 import { firebaseConfig } from './configFirebase.js';
@@ -19,22 +19,4 @@ export const loginUser = (email, password) => signInWithEmailAndPassword(auth, e
 
 // Authentication with Google
 // Popup
-// export const googleSignIn = () => signInWithPopup(auth, provider);
-
-// Redireccionando
-export const googleSignIn = () => {
-  signInWithRedirect(auth, provider);
-  getRedirectResult(auth)
-    .then(() => {
-      window.location.hash = '#wall';
-    }).catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-    });
-};
+export const googleSignIn = () => signInWithPopup(auth, provider);

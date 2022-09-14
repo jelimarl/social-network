@@ -1,4 +1,4 @@
-import { createUser } from '../lib/firebaseServices.js';
+import { createUser, googleSignIn } from '../lib/firebaseServices.js';
 
 export const register = () => {
   const sectionRegister = document.createElement('section');
@@ -59,6 +59,12 @@ export const register = () => {
         }
       });
     event.preventDefault();
+  });
+
+  const googleButton = sectionRegister.querySelector('.register__button-google');
+  googleButton.addEventListener('click', () => {
+    googleSignIn()
+      .then(() => { window.location.hash = '#wall'; });
   });
 
   return sectionRegister;

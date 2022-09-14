@@ -27,7 +27,8 @@ export const welcome = () => {
 
   const googleButton = sectionWelcome.querySelector('.welcome__button-google');
   googleButton.addEventListener('click', () => {
-    googleSignIn();
+    googleSignIn()
+      .then(() => { window.location.hash = '#wall'; });
   });
 
   return sectionWelcome;
