@@ -4,7 +4,6 @@ import { login } from './components/login.js';
 import { wall } from './components/wall.js';
 
 // Routing events
-const root = document.getElementById('root');
 
 const template = {
   '': welcome(),
@@ -14,6 +13,7 @@ const template = {
 };
 
 export const showSection = () => {
+  const root = document.getElementById('root');
   const hash = window.location.hash;
   root.replaceChildren(template[hash]);
 };
