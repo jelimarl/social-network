@@ -2,6 +2,8 @@
     --emphasis-color: #0A004A;
     --secondary-color: #B377FF;
     --primary-color: #5899E2;
+    --background-color: #04001D;
+    --dark-color: #100C29;
     --font-family: 'Nunito', sans-serif;
     --background: rgb(179, 119, 255);
     --background-gradient: linear-gradient(130deg, rgba(179, 119, 255, 1) 0%, rgba(88, 153, 226, 1) 82%);
@@ -28,7 +30,6 @@ html {
     gap: 1rem;
     width: 100vw;
     min-height: 100vh;
-    background: var(--background);
     background: var(--background-gradient);
 }
 
@@ -201,6 +202,74 @@ html {
 
 .register__text:last-child {
     margin-top: 1rem;
+}
+
+.sectionWall{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: var(--background-color);
+}
+
+.wall__header{
+    position: absolute;
+    top:0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 6.5rem;
+    background-color: var(--background-color);
+}
+.wall__brand{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.wall__logo{
+    height: 75%; 
+    margin-left: 2rem;
+}
+
+.wall__title{
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--primary-color);
+}
+
+.wall__logout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2rem;
+}
+
+.wall__logout p{
+    color: white;
+}
+
+.wall__footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 6rem;
+}
+
+.wall__button-add{
+    padding: 0rem 1.15rem;
+    font-size: 3rem;
+    font-weight: 900;
+    text-shadow: var(--shadow);
+    color: var(--background-color);
+    border-radius: 50px;
+    background: var(--background-gradient);
 }
 
 
