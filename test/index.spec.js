@@ -4,7 +4,7 @@
 import { loginUser } from '../src/lib/firebaseServices.js';
 import { showSection } from '../src/router.js';
 
-jest.mock('../src/lib/firebaseServices.js');
+// jest.mock('../src/lib/firebaseServices.js');
 
 describe('Router', () => {
   it('Tiene que llamar a la función login', () => {
@@ -29,11 +29,5 @@ describe('Router', () => {
     showSection();
 
     expect(document.querySelector('h2.register__title').textContent).toBe('Create account');
-  });
-});
-
-describe('Log in user', () => {
-  it('Tiene que resolverse positivamente', () => {
-    expect(loginUser()).toBe(Promise.resolve());
   });
 });
