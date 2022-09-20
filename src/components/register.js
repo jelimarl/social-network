@@ -42,6 +42,7 @@ export const register = () => {
     createUser(registerEmail.value, registerPassword.value)
       .then(() => {
         window.location.hash = '#wall';
+        registerForm.reset();
       })
       .catch((error) => {
         const errorCode = error.code;
