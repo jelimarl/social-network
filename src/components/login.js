@@ -40,6 +40,7 @@ export const login = () => {
     loginUser(loginEmail.value, loginPassword.value)
       .then(() => {
         window.location.hash = '#wall';
+        loginForm.reset();
       })
       .catch((error) => {
         const errorCode = error.code;

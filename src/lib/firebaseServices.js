@@ -4,7 +4,7 @@ import {
   signInWithPopup,
 } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js';
 import {
-  addDoc, collection, getFirestore, /*getDocs*/ onSnapshot,
+  addDoc, collection, getFirestore, /* getDocs */ onSnapshot,
 } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-firestore.js';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-app.js';
 import { firebaseConfig } from './configFirebase.js';
