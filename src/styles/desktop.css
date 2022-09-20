@@ -129,3 +129,28 @@
     margin-top: 2rem;
     font-weight: 700;
 }
+
+.wall__header {
+    width: 20%;
+}
+
+.wall__title {
+    font-size: 4.7rem;
+}
+
+.wall__logout p {
+    font-size: 2rem;
+}
+
+.wall__logout i {
+    font-size: 2rem;
+}
+
+.wall__footer {
+    width: 10%;
+}
+
+.wall__button-add {
+    padding: 0rem 1.56rem;
+    font-size: 4rem;
+}

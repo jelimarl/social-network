@@ -143,7 +143,7 @@
     left: 0;
     flex-direction: column;
     justify-content: center;
-    width: 20%;
+    width: 17%;
     min-height: 100vh;
     margin: 0;
     background-color: var(--dark-color);
@@ -163,7 +163,7 @@
 }
 
 .wall__title{
-    font-size: 4.7rem;
+    font-size: 4rem;
 }
 
 .wall__logout {
@@ -176,11 +176,11 @@
 .wall__logout p{
     display: block;
     margin-right: 1rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .wall__logout i{
-    font-size: 2rem;
+    font-size: 1.4rem;
 }
 
 .wall__add-post-modal {
@@ -264,13 +264,13 @@
 .wall__footer {
     flex-direction: column;
     right: 0;
-    width: 10%;
+    width: 8%;
     min-height: 100vh;
     margin-bottom: 0;
     background-color: var(--dark-color);
 }
 
 .wall__button-add {
-    padding: 0rem 1.56rem;
-    font-size: 4rem;
+    padding: 0rem 1.3rem;
+    font-size: 3.5rem;
 }
