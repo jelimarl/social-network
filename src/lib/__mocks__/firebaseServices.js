@@ -1,4 +1,6 @@
 // eslint-disable-next-line no-unused-vars
-export const loginUser = (email, password) => Promise.resolve();
+export const loginUser = jest.fn((email, password) => Promise.resolve());
 // eslint-disable-next-line no-unused-vars
-export const createUser = (email, password) => Promise.resolve();
+export const createUser = jest.fn((email, password) => Promise.resolve());
+
+export const googleSignIn = jest.fn(() => Promise.resolve());
