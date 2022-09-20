@@ -1,3 +1,5 @@
+import { savePost, onGetPost } from '../lib/firebaseServices.js';
+
 export const wall = () => {
   const sectionWall = document.createElement('section');
   sectionWall.className = 'sectionWall';
@@ -38,6 +40,24 @@ export const wall = () => {
   const addPostButton = sectionWall.querySelector('.wall__button-add');
   const modalAddPost = sectionWall.querySelector('.wall__container-add-post-modal');
   const closeAddPostModal = sectionWall.querySelector('.wall__modal-exit-button');
+  const postButton = sectionWall.querySelector('.wall__post-button');
+  const textAreaPost = sectionWall.querySelector('.wall__modal-add-text');
+  const wallInputs = sectionWall.querySelector('.wall__inputs');
+
+  window.addEventListener('DOMContentLoaded', () => {
+    onGetPost((querySnapshot) => {
+      wallInputs.innerHTML = '';
+      querySnapshot.forEach((doc) => {
+        wallInputs.innerHTML += `
+            <article class="post">
+            <img src="" alt="">
+            <h2 style="color:white; class="post__username">Nunito</h2>
+            <p style="color:white;" class="post__message">${doc.data().contentPost}</p>
+          </article>
+          `;
+      });
+    });
+  });
 
   addPostButton.addEventListener('click', () => {
     modalAddPost.style.display = 'flex';
@@ -52,6 +72,17 @@ export const wall = () => {
       modalAddPost.style.display = 'none';
     }
   };
+
+  postButton.addEventListener('click', () => {
+    if (textAreaPost.value === '') {
+      alert('No hay mensaje');
+    } else {
+      savePost(textAreaPost.value);
+
+      textAreaPost.innerHTML = '';
+      modalAddPost.style.display = 'none';
+    }
+  });
 
   return sectionWall;
 };

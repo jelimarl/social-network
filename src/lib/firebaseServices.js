@@ -2,15 +2,19 @@
 import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider,
   signInWithPopup,
-} from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js';
+} from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js';
+import {
+  addDoc, collection, getFirestore, /*getDocs*/ onSnapshot,
+} from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-firestore.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-app.js';
 import { firebaseConfig } from './configFirebase.js';
 
 // Initialize Firebase
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-const auth = getAuth();
-const provider = new GoogleAuthProvider();
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider(app);
+const firestoreConnection = getFirestore(app);
 
 // Authentication
 // eslint-disable-next-line max-len
@@ -20,3 +24,12 @@ export const loginUser = (email, password) => signInWithEmailAndPassword(auth, e
 // Authentication with Google
 // Popup
 export const googleSignIn = () => signInWithPopup(auth, provider);
+
+// Save data
+export const savePost = (contentPost) => {
+  addDoc(collection(firestoreConnection, 'Posts'), { contentPost });
+};
+
+// export const getPost = () => getDocs(collection(firestoreConnection, 'Posts'));
+
+export const onGetPost = (callback) => { onSnapshot(collection(firestoreConnection, 'Posts'), callback); };
