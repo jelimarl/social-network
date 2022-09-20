@@ -43,6 +43,8 @@ export const register = () => {
       .then(() => {
         window.location.hash = '#wall';
         registerForm.reset();
+        registerErrorInUse.style.display = 'none';
+        registerErrorInvalid.style.display = 'none';
       })
       .catch((error) => {
         const errorCode = error.code;

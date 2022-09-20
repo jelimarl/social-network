@@ -41,6 +41,8 @@ export const login = () => {
       .then(() => {
         window.location.hash = '#wall';
         loginForm.reset();
+        loginErrorEmailNotFound.style.display = 'none';
+        loginErrorWrongPassword.style.display = 'none';
       })
       .catch((error) => {
         const errorCode = error.code;

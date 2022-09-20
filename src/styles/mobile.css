@@ -216,7 +216,7 @@ html {
 }
 
 .wall__header{
-    position: absolute;
+    position: fixed;
     top:0;
     display: flex;
     justify-content: space-between;
@@ -370,11 +370,12 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     height: 6rem;
-    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    background: var(--background-color);
 }
 
 .wall__button-add{
