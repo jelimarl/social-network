@@ -96,3 +96,64 @@
     font-size: 3.5rem;
     margin-top: 3rem;
 }
+
+.wall__header {
+    margin-top: 1.5rem;
+}
+
+.wall__logo {
+    height: 80%;
+}
+
+.wall__title {
+    font-size: 4.5rem;
+}
+
+.wall__logout i {
+    font-size: 2.5rem;
+}
+
+.wall__footer {
+    margin-bottom: 1.8rem;
+}
+
+.wall__add-post-modal {
+    padding: 3rem;
+}
+
+.wall__button-add {
+    padding: 0rem 1.675rem;
+    font-size: 4.5rem;
+}
+
+.wall__modal-profile-picture {
+    width: 6.5rem;
+}
+
+.wall__modal-user-name {
+    font-size: 3.2rem;
+    font-weight: 800;
+}
+
+.wall__modal-exit-button {
+    font-size: 3rem;
+}
+
+.wall__modal-add-text {
+    font-size: 2.3rem;
+}
+
+.wall__add-image-button {
+    font-size: 2rem;
+}
+
+.wall__add-image-button i {
+    font-size: 2.5rem;
+    margin-right: 0.8rem;
+}
+
+.wall__post-button {
+    padding: 0.5rem 1.5rem;
+    font-size: 2.5rem;
+}
+

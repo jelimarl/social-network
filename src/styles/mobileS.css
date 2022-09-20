@@ -66,3 +66,31 @@
 .register__text {
     font-size: 1.8rem;
 }
+
+.wall__logo {
+    height: 50%;
+}
+
+.wall__title {
+    font-size: 2.8rem;
+}
+
+.wall__add-post-modal {
+    padding: 1rem 2.5rem;
+}
+
+.wall__modal-profile-picture {
+    width: 3.5rem;
+}
+
+.wall__modal-user-name {
+    width: 1.8rem;
+}
+
+.wall__modal-add-text {
+    margin: 0.3rem 0;
+}
+
+.wall__footer{
+    margin-bottom: 0.5rem;
+}

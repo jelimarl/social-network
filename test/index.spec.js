@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
 // importamos la funcion que vamos a testear
-import { loginUser } from '../src/lib/firebaseServices.js';
+// import { loginUser } from '../src/lib/firebaseServices.js';
 import { register } from '../src/components/register.js';
 import { showSection } from '../src/router.js';
 import { googleSignIn } from '../src/lib/firebaseServices.js';

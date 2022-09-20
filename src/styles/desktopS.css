@@ -2,6 +2,8 @@
     --emphasis-color: #0A004A;
     --secondary-color: #B377FF;
     --primary-color: #5899E2;
+    --background-color: #04001D;
+    --dark-color: #100C29;
     --font-family: 'Nunito', sans-serif;
     --background: rgb(179, 119, 255);
     --background-gradient: linear-gradient(130deg, rgba(179, 119, 255, 1) 0%, rgba(88, 153, 226, 1) 82%);
@@ -131,4 +133,144 @@
     font-size: 1.8rem;
     margin-top: 2rem;
     font-weight: 700;
+}
+
+.sectionWall{
+    flex-direction: row;
+}
+
+.wall__header{
+    left: 0;
+    flex-direction: column;
+    justify-content: center;
+    width: 20%;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--dark-color);
+}
+
+.wall__brand{
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.wall__logo{
+    height: 25%;
+    margin: 0;
+}
+
+.wall__title{
+    font-size: 4.7rem;
+}
+
+.wall__logout {
+    position: absolute;
+    bottom: 2rem;
+    margin: 0;
+    width: 100%;
+}
+
+.wall__logout p{
+    display: block;
+    margin-right: 1rem;
+    font-size: 2rem;
+}
+
+.wall__logout i{
+    font-size: 2rem;
+}
+
+.wall__add-post-modal {
+    width: 50%;
+    height: 80%;
+}
+
+.wall__modal-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wall__modal-profile-picture {
+    width: 5rem;
+    margin-right: 1rem;
+    border-radius: 50%;
+}
+
+.wall__modal-user-name {
+    font-size: 2rem;
+}
+
+.wall__modal-exit-button {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    background: -webkit-linear-gradient(var(--secondary-color), var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.wall__modal-add-text {
+    margin: 1.5rem;
+    width: 100%;
+    height: 70%;
+    border: none;
+    background-color: var(--dark-color);
+    outline: none;
+    resize: none;
+    font-family: var(--font-family);
+    font-size: 1.6rem;
+    color: white;
+}
+
+.wall__modal-add-text::placeholder {
+    color: #d9d9d9;
+}
+
+.wall__modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.wall__add-image-button {
+    background-color: transparent;
+    border: none;
+    font-family: var(--font-family);
+    font-size: 1.4rem;
+    color: white;
+}
+
+.wall__add-image-button i {
+    font-size: 2rem;
+    margin-right: 0.5rem;
+}
+
+.wall__post-button {
+    padding: 0.5rem 1.2rem;
+    border-radius: 3rem;
+    background: var(--background-gradient);
+    border: none;
+    font-family: var(--font-family);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: white;
+    text-shadow: var(--shadow);
+}
+
+.wall__footer {
+    flex-direction: column;
+    right: 0;
+    width: 10%;
+    min-height: 100vh;
+    margin-bottom: 0;
+    background-color: var(--dark-color);
+}
+
+.wall__button-add {
+    padding: 0rem 1.56rem;
+    font-size: 4rem;
 }

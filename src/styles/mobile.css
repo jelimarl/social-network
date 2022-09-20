@@ -234,6 +234,7 @@ html {
 .wall__logo{
     height: 60%;
     margin-left: 2rem;
+    margin-right: 0.7rem;
 }
 
 .wall__title{
@@ -262,7 +263,7 @@ html {
 }
 
 .wall__container-add-post-modal {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -275,8 +276,8 @@ html {
 .wall__add-post-modal {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: space-between;
+    justify-content: space-between;
+    align-items: center;
     width: 80%;
     height: 70%;
     padding: 2.5rem;
@@ -319,7 +320,7 @@ html {
 .wall__modal-add-text {
     margin: 1.5rem;
     width: 100%;
-    height: 32.5rem;
+    height: 70%;
     border: none;
     background-color: var(--dark-color);
     outline: none;
@@ -350,6 +351,7 @@ html {
 
 .wall__add-image-button i {
     font-size: 2rem;
+    margin-right: 0.5rem;
 }
 
 .wall__post-button {
@@ -372,18 +374,24 @@ html {
     bottom: 0;
     width: 100%;
     height: 6rem;
+    margin-bottom: 1rem;
 }
 
 .wall__button-add{
     padding: 0rem 1.15rem;
+    font-family: var(--font-family);
     font-size: 3rem;
     font-weight: 900;
     text-shadow: var(--shadow);
     color: var(--background-color);
+    border: none;
     border-radius: 50px;
     background: var(--background-gradient);
 }
 
+.wall__button {
+    cursor: pointer;
+}
 
 
 
