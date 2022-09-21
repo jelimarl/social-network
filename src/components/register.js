@@ -40,7 +40,8 @@ export const register = () => {
 
   registerForm.addEventListener('submit', (event) => {
     createUser(registerEmail.value, registerPassword.value)
-      .then(() => {
+      .then((userCredential) => {
+        const userCredentials = userCredential;
         window.location.hash = '#wall';
         registerForm.reset();
         registerErrorInUse.style.display = 'none';
