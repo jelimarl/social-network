@@ -50,9 +50,12 @@ export const wall = () => {
       querySnapshot.forEach((doc) => {
         wallInputs.innerHTML += `
             <article class="post">
-            <img src="" alt="">
-            <h2 style="color:white; class="post__username">Nunito</h2>
-            <p style="color:white;" class="post__message">${doc.data().contentPost}</p>
+            <div class='post__user'>
+              <img class='post__user-photo' src="http://imageshack.com/f/pmde3Ezyp
+              " alt="profile picture">
+              <h2  class="post__username">Nunito</h2>
+            </div>
+            <p class="post__message">${doc.data().contentPost}</p>
           </article>
           `;
       });
@@ -61,15 +64,18 @@ export const wall = () => {
 
   addPostButton.addEventListener('click', () => {
     modalAddPost.style.display = 'flex';
+    wallInputs.style.display = 'none';
   });
 
   closeAddPostModal.addEventListener('click', () => {
     modalAddPost.style.display = 'none';
+    wallInputs.style.display = 'flex';
   });
 
   window.onclick = (event) => {
     if (event.target === modalAddPost) {
       modalAddPost.style.display = 'none';
+      wallInputs.style.display = 'flex';
     }
   };
 
@@ -81,6 +87,7 @@ export const wall = () => {
 
       textAreaPost.innerHTML = '';
       modalAddPost.style.display = 'none';
+      wallInputs.style.display = 'flex';
     }
   });
 

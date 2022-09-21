@@ -137,6 +137,8 @@
 
 .sectionWall{
     flex-direction: row;
+    width: 100%;
+    padding: 0 10% 0 19%; 
 }
 
 .wall__header{
@@ -181,6 +183,42 @@
 
 .wall__logout i{
     font-size: 1.4rem;
+}
+
+.wall__inputs {
+    width: 80%;
+    gap: 3rem;
+    padding: 3rem 0;
+}
+
+.post {
+    width: 100%;
+    min-height: 14rem;
+    padding: 1.5rem;
+    background-color: var(--dark-color);
+    color: white;
+    border-radius: 2.5rem;
+}
+
+.post__user{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+} 
+
+.post__user-photo{
+   width: 4rem;
+   border-radius: 50%; 
+}
+
+.post__username {
+    margin-left: 1rem;
+    font-size: 2rem;
+}
+
+.post__message{
+    margin: 0 0.5rem 1rem 0.5rem;
+    font-size: 1.7rem;
 }
 
 .wall__add-post-modal {

@@ -98,7 +98,8 @@
 }
 
 .wall__header {
-    margin-top: 1.5rem;
+    height: 9rem;
+    padding: 1.5rem 0;
 }
 
 .wall__logo {
@@ -113,18 +114,45 @@
     font-size: 2.5rem;
 }
 
+.wall__inputs {
+    padding: 10rem 0;
+}
+
+.post {
+    min-height: 18rem;
+    padding: 2rem;
+}
+
+.post__user-photo{
+    width: 5.5rem;
+    border-radius: 50%; 
+ }
+ 
+ .post__username {
+     margin-left: 1rem;
+     font-size: 2.8rem;
+ }
+ 
+ .post__message{
+     margin: 0 0.5rem 1rem 0.5rem;
+     font-size: 2.5rem;
+ }
+
 .wall__footer {
-    padding-bottom: 2rem;
+    height: fit-content;
+    padding: 1rem 0rem;
+}
+
+.wall__button-add {
+    margin: 0.5rem;
+    padding: 0rem 1.675rem;
+    font-size: 4.5rem;
 }
 
 .wall__add-post-modal {
     padding: 3rem;
 }
 
-.wall__button-add {
-    padding: 0rem 1.675rem;
-    font-size: 4.5rem;
-}
 
 .wall__modal-profile-picture {
     width: 6.5rem;
