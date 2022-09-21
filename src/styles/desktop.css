@@ -146,6 +146,10 @@
     font-size: 2rem;
 }
 
+.wall__inputs {
+    padding: 3rem 8.9% 3rem 19%;
+}
+
 .wall__footer {
     width: 10%;
 }
