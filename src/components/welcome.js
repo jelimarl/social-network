@@ -1,4 +1,4 @@
-import { googleSignIn } from '../lib/firebaseServices.js';
+import { googleSignIn, saveUserInfo } from '../lib/firebaseServices.js';
 
 export const welcome = () => {
   const sectionWelcome = document.createElement('section');
@@ -28,7 +28,11 @@ export const welcome = () => {
   const googleButton = sectionWelcome.querySelector('.welcome__button-google');
   googleButton.addEventListener('click', () => {
     googleSignIn()
-      .then(() => { window.location.hash = '#wall'; });
+      .then((result) => {
+        const user = result.user;
+        window.location.hash = '#wall';
+        saveUserInfo(user.displayName, user.email, user.uid);
+      });
   });
 
   return sectionWelcome;

@@ -1,4 +1,4 @@
-import { loginUser, googleSignIn } from '../lib/firebaseServices.js';
+import { loginUser, googleSignIn, saveUserInfo } from '../lib/firebaseServices.js';
 
 export const login = () => {
   const sectionLogin = document.createElement('section');
@@ -65,7 +65,11 @@ export const login = () => {
   const googleButton = sectionLogin.querySelector('.register__button-google');
   googleButton.addEventListener('click', () => {
     googleSignIn()
-      .then(() => { window.location.hash = '#wall'; });
+      .then((result) => {
+        const user = result.user;
+        window.location.hash = '#wall';
+        saveUserInfo(user.displayName, user.email, user.uid);
+      });
   });
 
   return sectionLogin;
