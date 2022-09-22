@@ -1,4 +1,6 @@
-import { savePost, onGetPost } from '../lib/firebaseServices.js';
+import {
+  savePost, onGetPost, getUserInfo, currentUser,
+} from '../lib/firebaseServices.js';
 
 export const wall = () => {
   const sectionWall = document.createElement('section');
@@ -47,13 +49,21 @@ export const wall = () => {
   window.addEventListener('DOMContentLoaded', () => {
     onGetPost((querySnapshot) => {
       wallInputs.innerHTML = '';
+
+      console.log('Hola', currentUser);
+      // const displayName = currentUser.displayName;
+      // if (currentUser !== null) {
+      //   displayName =
+      //   // const photoURL = currentUser.photoURL;
+      // }
+
       querySnapshot.forEach((doc) => {
         wallInputs.innerHTML += `
             <article class="post">
             <div class='post__user'>
               <img class='post__user-photo' src="http://imageshack.com/f/pmde3Ezyp
               " alt="profile picture">
-              <h2  class="post__username">Nunito</h2>
+              <h2  class="post__username"></h2>
             </div>
             <p class="post__message">${doc.data().contentPost}</p>
           </article>
@@ -81,6 +91,7 @@ export const wall = () => {
 
   postButton.addEventListener('click', () => {
     if (textAreaPost.value === '') {
+      // eslint-disable-next-line no-alert
       alert('No hay mensaje');
     } else {
       savePost(textAreaPost.value);

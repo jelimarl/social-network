@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider,
-  signInWithPopup,
+  signInWithPopup, onAuthStateChanged,
 } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js';
 import {
   addDoc, collection, getFirestore, getDocs, onSnapshot,
@@ -15,6 +15,22 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider(app);
 const firestoreConnection = getFirestore(app);
+export const currentUser = auth.currentUser;
+
+// Auth State
+export const authState = () => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      let userName = user.displayName;
+      return userName;
+    }
+
+    // else {
+    // // User is signed out
+    // // ...
+    // }
+  });
+};
 
 // Authentication
 // eslint-disable-next-line max-len
