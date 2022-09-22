@@ -1,4 +1,6 @@
-import { createUser, googleSignIn, saveUserInfo } from '../lib/firebaseServices.js';
+import {
+  createUser, getUserInfo, googleSignIn, saveUserInfo,
+} from '../lib/firebaseServices.js';
 
 export const register = () => {
   const sectionRegister = document.createElement('section');
@@ -75,7 +77,18 @@ export const register = () => {
       .then((result) => {
         const user = result.user;
         window.location.hash = '#wall';
-        saveUserInfo(user.displayName, user.email, user.uid);
+
+        getUserInfo()
+          .then((querySnapshot) => {
+            const userEmail = [];
+            querySnapshot.forEach((doc) => {
+              userEmail.push(doc.data().userEmail);
+            });
+
+            if (!userEmail.includes(user.email)) {
+              saveUserInfo(user.displayName, user.email, user.uid);
+            }
+          });
       });
   });
 

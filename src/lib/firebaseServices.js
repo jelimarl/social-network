@@ -4,7 +4,7 @@ import {
   signInWithPopup,
 } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js';
 import {
-  addDoc, collection, getFirestore, /* getDocs */ onSnapshot,
+  addDoc, collection, getFirestore, getDocs, onSnapshot,
 } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-firestore.js';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-app.js';
 import { firebaseConfig } from './configFirebase.js';
@@ -35,6 +35,8 @@ export const savePost = (contentPost) => {
 export const saveUserInfo = (userName, userEmail, userID) => {
   addDoc(collection(firestoreConnection, 'UserInfo'), { userName, userEmail, userID });
 };
+
+export const getUserInfo = () => getDocs(collection(firestoreConnection, 'UserInfo'));
 
 // export const getPost = () => getDocs(collection(firestoreConnection, 'Posts'));
 
