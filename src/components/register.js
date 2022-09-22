@@ -1,4 +1,4 @@
-import { createUser, googleSignIn } from '../lib/firebaseServices.js';
+import { createUser, googleSignIn, saveUserInfo } from '../lib/firebaseServices.js';
 
 export const register = () => {
   const sectionRegister = document.createElement('section');
@@ -33,6 +33,7 @@ export const register = () => {
         `;
 
   const registerForm = sectionRegister.querySelector('#register__form-id');
+  const registerUsername = sectionRegister.querySelector('#register__username');
   const registerEmail = sectionRegister.querySelector('#register__email');
   const registerPassword = sectionRegister.querySelector('#register__password');
   const registerErrorInvalid = sectionRegister.querySelector('#register__invalid-email');
@@ -40,7 +41,11 @@ export const register = () => {
 
   registerForm.addEventListener('submit', (event) => {
     createUser(registerEmail.value, registerPassword.value)
-      .then(() => {
+      .then((userCredential) => {
+        const userCredentials = userCredential;
+        userCredentials.user.displayName = registerUsername.value;
+        // eslint-disable-next-line max-len
+        saveUserInfo(userCredentials.user.displayName, userCredentials.user.email, userCredentials.user.uid);
         window.location.hash = '#wall';
         registerForm.reset();
         registerErrorInUse.style.display = 'none';
@@ -67,7 +72,11 @@ export const register = () => {
   const googleButton = sectionRegister.querySelector('.register__button-google');
   googleButton.addEventListener('click', () => {
     googleSignIn()
-      .then(() => { window.location.hash = '#wall'; });
+      .then((result) => {
+        const user = result.user;
+        window.location.hash = '#wall';
+        saveUserInfo(user.displayName, user.email, user.uid);
+      });
   });
 
   return sectionRegister;
