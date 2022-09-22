@@ -68,7 +68,10 @@ export const register = () => {
   const googleButton = sectionRegister.querySelector('.register__button-google');
   googleButton.addEventListener('click', () => {
     googleSignIn()
-      .then(() => { window.location.hash = '#wall'; });
+      .then((result) => {
+        window.location.hash = '#wall';
+        console.log('Hola', result.user)
+      });
   });
 
   return sectionRegister;
