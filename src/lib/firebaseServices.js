@@ -45,8 +45,8 @@ export const saveUserInfo = (userName, userEmail, userID) => {
   addDoc(collection(firestoreConnection, 'UserInfo'), { userName, userEmail, userID });
 };
 
-export const getUserInfo = () => getDocs(collection(firestoreConnection, 'UserInfo'));
+// Get info
 
-// export const getPost = () => getDocs(collection(firestoreConnection, 'Posts'));
+export const getUserInfo = () => getDocs(collection(firestoreConnection, 'UserInfo'));
 
 export const onGetPost = (callback) => { onSnapshot(collection(firestoreConnection, 'Posts'), callback); };
