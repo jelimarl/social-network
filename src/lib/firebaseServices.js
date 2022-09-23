@@ -16,6 +16,8 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider(app);
 const firestoreConnection = getFirestore(app);
 
+provider.addScope('https://www.googleapis.com/auth/cloud-platform');
+
 // Authentication
 // eslint-disable-next-line max-len
 export const createUser = (email, password) => createUserWithEmailAndPassword(auth, email, password);
