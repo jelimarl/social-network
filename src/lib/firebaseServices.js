@@ -41,7 +41,6 @@ export const savePost = (contentPost) => {
 };
 
 // Save user info
-
 export const saveUserInfo = (userName, userEmail, userID) => {
   addDoc(collection(firestoreConnection, 'UserInfo'), { userName, userEmail, userID });
 };
