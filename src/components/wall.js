@@ -1,6 +1,4 @@
 import {
-  savePost, onGetPost, getUserInfo, currentUser,
-} from '../lib/firebaseServices.js';
 
 export const wall = () => {
   const sectionWall = document.createElement('section');
@@ -47,15 +45,9 @@ export const wall = () => {
   const wallInputs = sectionWall.querySelector('.wall__inputs');
 
   window.addEventListener('DOMContentLoaded', () => {
+    
     onGetPost((querySnapshot) => {
       wallInputs.innerHTML = '';
-
-      console.log('Hola', currentUser);
-      // const displayName = currentUser.displayName;
-      // if (currentUser !== null) {
-      //   displayName =
-      //   // const photoURL = currentUser.photoURL;
-      // }
 
       querySnapshot.forEach((doc) => {
         wallInputs.innerHTML += `
