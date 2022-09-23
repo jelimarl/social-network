@@ -18,16 +18,17 @@ const firestoreConnection = getFirestore(app);
 export const currentUser = auth.currentUser;
 
 // Auth State
-export const getAuthState = (auth) => {
+export const getAuthState = () => {
   onAuthStateChanged(auth, (user) => {
     const userInfo = {};
+
     if (user) {
       userInfo.name = user.displayName;
       userInfo.email = user.email;
       userInfo.uid = user.uid;
       userInfo.profilePicture = user.photoURL;
     }
-    console.log(userInfo);
+
     return userInfo;
   });
 };

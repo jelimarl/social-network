@@ -1,4 +1,6 @@
-
+import {
+  savePost, onGetPost, getUserInfo, currentUser, userInfo,
+} from '../lib/firebaseServices.js';
 
 export const wall = () => {
   const sectionWall = document.createElement('section');
@@ -45,8 +47,6 @@ export const wall = () => {
   const wallInputs = sectionWall.querySelector('.wall__inputs');
 
   window.addEventListener('DOMContentLoaded', () => {
-    console.log(getAuthState());
-
     onGetPost((querySnapshot) => {
       wallInputs.innerHTML = '';
 
