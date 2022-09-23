@@ -50,7 +50,6 @@ export const wall = () => {
     const users = {};
     getUserInfo()
       .then((querySnapshot) => {
-        // const userInfo = [];
         querySnapshot.forEach((doc) => {
           users[doc.data().userEmail] = doc.data().userName;
         });
@@ -77,7 +76,7 @@ export const wall = () => {
         wallInputs.innerHTML += `
             <article class="post">
             <div class='post__user'>
-              <img class='post__user-photo' src=${photo} alt="profile picture">
+              <img class='post__user-photo' src='${photo}' alt="profile picture">
               <h2  class="post__username">${nameUser}</h2>
             </div>
             <p class="post__message">${doc.data().contentPost}</p>
