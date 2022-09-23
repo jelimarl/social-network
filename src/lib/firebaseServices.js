@@ -19,19 +19,18 @@ export const currentUser = auth.currentUser;
 
 // Auth State
 export const getAuthState = () => {
-  onAuthStateChanged(auth, (user) => {
+  console.log(onAuthStateChanged(auth, (user) => {
     const userInfo = {};
-
     if (user) {
       userInfo.name = user.displayName;
       userInfo.email = user.email;
       userInfo.uid = user.uid;
       userInfo.profilePicture = user.photoURL;
     }
-
-    return userInfo;
-  });
+  }));
 };
+
+console.log(auth.currentUser);
 
 // Authentication
 // eslint-disable-next-line max-len
