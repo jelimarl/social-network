@@ -12,13 +12,13 @@ import { firebaseConfig } from './configFirebase.js';
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+export const auth = getAuth(app);
 const provider = new GoogleAuthProvider(app);
 const firestoreConnection = getFirestore(app);
 export const currentUser = auth.currentUser;
 
 // Auth State
-export const getAuthState = () => {
+export const getAuthState = (auth) => {
   onAuthStateChanged(auth, (user) => {
     const userInfo = {};
     if (user) {
