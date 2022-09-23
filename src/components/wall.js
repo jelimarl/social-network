@@ -50,7 +50,6 @@ export const wall = () => {
     const users = {};
     getUserInfo()
       .then((querySnapshot) => {
-        // const userInfo = [];
         querySnapshot.forEach((doc) => {
           users[doc.data().userEmail] = doc.data().userName;
         });
@@ -68,7 +67,7 @@ export const wall = () => {
               nameUser = value;
             }
           });
-        }else{
+        } else {
           nameUser = doc.data().name;
         }
         // console.log(nameUser);

@@ -1,4 +1,4 @@
-import { googleSignIn, saveUserInfo, getUserInfo } from '../lib/firebaseServices.js';
+import { googleSignIn, saveUserInfo, getUserInfo   } from '../lib/firebaseServices.js';
 
 export const welcome = () => {
   const sectionWelcome = document.createElement('section');
