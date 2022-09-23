@@ -1,11 +1,4 @@
-import {
-  getAuth,
-} from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js';
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-app.js';
-import {
-  savePost, onGetPost, getUserInfo, currentUser, getAuthState,
-} from '../lib/firebaseServices.js';
-import { firebaseConfig } from './configFirebase.js';
+
 
 export const wall = () => {
   const sectionWall = document.createElement('section');
@@ -52,10 +45,7 @@ export const wall = () => {
   const wallInputs = sectionWall.querySelector('.wall__inputs');
 
   window.addEventListener('DOMContentLoaded', () => {
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    console.log(currentUser);
-    console.log(getAuthState(auth));
+    console.log(getAuthState());
 
     onGetPost((querySnapshot) => {
       wallInputs.innerHTML = '';

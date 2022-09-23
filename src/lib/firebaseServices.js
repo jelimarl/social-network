@@ -27,7 +27,7 @@ export const getAuthState = (auth) => {
       userInfo.uid = user.uid;
       userInfo.profilePicture = user.photoURL;
     }
-
+    console.log(userInfo);
     return userInfo;
   });
 };
