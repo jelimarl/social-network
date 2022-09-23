@@ -12,25 +12,9 @@ import { firebaseConfig } from './configFirebase.js';
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-export const auth = getAuth(app);
+const auth = getAuth(app);
 const provider = new GoogleAuthProvider(app);
 const firestoreConnection = getFirestore(app);
-export const currentUser = auth.currentUser;
-
-// Auth State
-export const getAuthState = () => {
-  console.log(onAuthStateChanged(auth, (user) => {
-    const userInfo = {};
-    if (user) {
-      userInfo.name = user.displayName;
-      userInfo.email = user.email;
-      userInfo.uid = user.uid;
-      userInfo.profilePicture = user.photoURL;
-    }
-  }));
-};
-
-console.log(auth.currentUser);
 
 // Authentication
 // eslint-disable-next-line max-len
@@ -43,7 +27,17 @@ export const googleSignIn = () => signInWithPopup(auth, provider);
 
 // Save data
 export const savePost = (contentPost) => {
-  addDoc(collection(firestoreConnection, 'Posts'), { contentPost });
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const name = user.displayName;
+      const email = user.email;
+      const uid = user.uid;
+      const photo = user.photoURL;
+      addDoc(collection(firestoreConnection, 'Posts'), {
+        contentPost, name, email, uid, photo,
+      });
+    }
+  });
 };
 
 // Save user info
