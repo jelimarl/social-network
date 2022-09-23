@@ -1,5 +1,5 @@
 import {
-  savePost, onGetPost,
+  savePost, onGetPost, getUserInfo,
 } from '../lib/firebaseServices.js';
 
 export const wall = () => {
@@ -47,16 +47,38 @@ export const wall = () => {
   const wallInputs = sectionWall.querySelector('.wall__inputs');
 
   window.addEventListener('DOMContentLoaded', () => {
+    const users = {};
+    getUserInfo()
+      .then((querySnapshot) => {
+        // const userInfo = [];
+        querySnapshot.forEach((doc) => {
+          users[doc.data().userEmail] = doc.data().userName;
+        });
+      });
     onGetPost((querySnapshot) => {
       wallInputs.innerHTML = '';
 
+      // Traer nombre de usuario
       querySnapshot.forEach((doc) => {
+        let nameUser;
+        const userEntries = Object.entries(users);
+        if (!doc.data().name) {
+          userEntries.forEach(([key, value]) => {
+            if (doc.data().email === key) {
+              nameUser = value;
+            }
+          });
+        }else{
+          nameUser = doc.data().name;
+        }
+        // console.log(nameUser);
+        const linkPhoto = 'https://imagizer.imageshack.com/img923/9210/UFd2QW.png';
+        const photo = doc.data().photo ? doc.data().photo : linkPhoto;
         wallInputs.innerHTML += `
             <article class="post">
             <div class='post__user'>
-              <img class='post__user-photo' src="http://imageshack.com/f/pmde3Ezyp
-              " alt="profile picture">
-              <h2  class="post__username">${doc.data().email}</h2>
+              <img class='post__user-photo' src=${photo} alt="profile picture">
+              <h2  class="post__username">${nameUser}</h2>
             </div>
             <p class="post__message">${doc.data().contentPost}</p>
           </article>
