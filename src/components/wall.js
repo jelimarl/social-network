@@ -1,5 +1,5 @@
 import {
-  savePost, onGetPost, getUserInfo, currentUser, userInfo,
+  savePost, onGetPost,
 } from '../lib/firebaseServices.js';
 
 export const wall = () => {
@@ -56,7 +56,7 @@ export const wall = () => {
             <div class='post__user'>
               <img class='post__user-photo' src="http://imageshack.com/f/pmde3Ezyp
               " alt="profile picture">
-              <h2  class="post__username"></h2>
+              <h2  class="post__username">${doc.data().email}</h2>
             </div>
             <p class="post__message">${doc.data().contentPost}</p>
           </article>
