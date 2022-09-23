@@ -67,7 +67,7 @@ export const wall = () => {
               nameUser = value;
             }
           });
-        }else{
+        } else {
           nameUser = doc.data().name;
         }
         // console.log(nameUser);
