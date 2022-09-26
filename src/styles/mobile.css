@@ -285,11 +285,11 @@ html {
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
-} 
+}
 
 .post__user-photo{
    width: 4rem;
-   border-radius: 50%; 
+   border-radius: 50%;
 }
 
 .post__username {
@@ -300,6 +300,10 @@ html {
 .post__message{
     margin: 0 0.5rem 1rem 0.5rem;
     font-size: 1.7rem;
+}
+
+.post__container-edit-delete-modal {
+    display: none;
 }
 
 .wall__container-add-post-modal {
