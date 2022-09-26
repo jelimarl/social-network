@@ -42,7 +42,13 @@ export const welcome = () => {
             if (!userEmail.includes(user.email)) {
               saveUserInfo(user.displayName, user.email, user.uid);
             }
+          })
+          .catch((error)=>{
+            console.log(error);
           });
+      })
+      .catch((error)=>{
+        console.log(error);
       });
   });
 
