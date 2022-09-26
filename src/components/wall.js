@@ -1,4 +1,4 @@
-import { getCurrentUser } from '../lib/currentUser.js';
+import { getCurrentUser, currentUser } from '../lib/currentUser.js';
 import {
   savePost, onGetPost,
 } from '../lib/firebaseServices.js';
@@ -31,14 +31,12 @@ export const wall = () => {
   <section class="wall__add-post-modal">
     <div class="wall__modal-info-user">
       <div class="wall__modal-user">
-        <img class="wall__modal-profile-picture" src="http://imageshack.com/f/posCILFZp" alt="Profile Picture">
-        <h2 class="wall__modal-user-name"></h2>
       </div>
       <i class="wall__button wall__modal-exit-button fa-solid fa-xmark"></i>
     </div>
     <textarea max-length="2200" placeholder="Add something..." class="wall__modal-add-text"></textarea>
     <div class="wall__modal-buttons">
-      <button class="wall__button wall__add-image-button"><i class="fa-regular fa-image"></i>Add image</button>
+      <!--<button class="wall__button wall__add-image-button"><i class="fa-regular fa-image"></i>Add image</button>-->
       <button class="wall__button wall__post-button">Post</button>
     </div>
   </section>
@@ -54,10 +52,12 @@ export const wall = () => {
   const postButton = sectionWall.querySelector('.wall__post-button');
   const textAreaPost = sectionWall.querySelector('.wall__modal-add-text');
   const wallInputs = sectionWall.querySelector('.wall__inputs');
-  const userNameAddPost = sectionWall.querySelector('.wall__modal-user-name');
+  const userInfoAddPostModal = sectionWall.querySelector('.wall__modal-user');
 
   // eslint-disable-next-line padded-blocks
   window.addEventListener('DOMContentLoaded', () => {
+    getCurrentUser();
+
     onGetPost((querySnapshot) => {
       wallInputs.innerHTML = '';
 
@@ -92,7 +92,13 @@ export const wall = () => {
   });
 
   addPostButton.addEventListener('click', () => {
-    userNameAddPost.innerHTML = getCurrentUser();
+    userInfoAddPostModal.innerHTML = `
+    <object class='wall__modal-profile-picture' data="https://imagizer.imageshack.com/img923/9210/UFd2QW.png" type="image/png">
+    <img class="wall__modal-profile-picture" src="${currentUser.photoURL}" alt="Profile Picture">
+    </object>
+    <h2 class="wall__modal-user-name">${currentUser.displayName}</h2>
+    `;
+    textAreaPost.value = '';
     modalAddPost.style.display = 'flex';
     wallInputs.style.display = 'none';
   });
@@ -116,7 +122,6 @@ export const wall = () => {
     } else {
       savePost(textAreaPost.value);
 
-      textAreaPost.innerHTML = '';
       modalAddPost.style.display = 'none';
       wallInputs.style.display = 'flex';
     }

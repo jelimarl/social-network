@@ -14,6 +14,4 @@ export const getCurrentUser = () => {
       currentUser.photoURL = user.photoURL;
     }
   });
-
-  return currentUser.displayName;
 };
