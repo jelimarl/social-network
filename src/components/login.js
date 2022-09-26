@@ -82,11 +82,11 @@ export const login = () => {
               saveUserInfo(user.displayName, user.email, user.uid);
             }
           })
-          .catch((error)=>{
+          .catch((error) => {
             console.log(error);
           });
       })
-      .catch((error)=>{
+      .catch((error) => {
         console.log(error);
       });
   });
