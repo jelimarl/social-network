@@ -1,4 +1,4 @@
-import { googleSignIn, saveUserInfo, getUserInfo   } from '../lib/firebaseServices.js';
+import { googleSignIn, saveUserInfo, getUserInfo } from '../lib/firebaseServices.js';
 
 export const welcome = () => {
   const sectionWelcome = document.createElement('section');
@@ -43,11 +43,11 @@ export const welcome = () => {
               saveUserInfo(user.displayName, user.email, user.uid);
             }
           })
-          .catch((error)=>{
+          .catch((error) => {
             console.log(error);
           });
       })
-      .catch((error)=>{
+      .catch((error) => {
         console.log(error);
       });
   });

@@ -4,3 +4,7 @@ export const loginUser = jest.fn((email, password) => Promise.resolve());
 export const createUser = jest.fn((email, password) => Promise.resolve());
 
 export const googleSignIn = jest.fn(() => Promise.resolve());
+
+export const getUserInfo = jest.fn(() => Promise.resolve());
+
+export const onGetPost = jest.fn(() => Promise.resolve());

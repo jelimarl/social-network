@@ -1,5 +1,5 @@
 import {
-  createUser, getUserInfo, googleSignIn, saveUserInfo,
+  createUser, getUserInfo, googleSignIn, saveUserInfo, saveLocal,
 } from '../lib/firebaseServices.js';
 
 export const register = () => {
@@ -44,12 +44,14 @@ export const register = () => {
   registerForm.addEventListener('submit', (event) => {
     createUser(registerEmail.value, registerPassword.value)
       .then((userCredential) => {
-        const userCredentials = userCredential;
-        userCredentials.user.displayName = registerUsername.value;
+        const user = userCredential.user;
+        user.displayName = registerUsername.value;
+        saveLocal();
         // eslint-disable-next-line max-len
-        saveUserInfo(userCredentials.user.displayName, userCredentials.user.email, userCredentials.user.uid);
+        saveUserInfo(user.displayName, user.email, user.uid);
         window.location.hash = '#wall';
         registerForm.reset();
+        registerUsername.value = '';
         registerErrorInUse.style.display = 'none';
         registerErrorInvalid.style.display = 'none';
       })
@@ -76,6 +78,7 @@ export const register = () => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
+        saveLocal();
         window.location.hash = '#wall';
 
         getUserInfo()
@@ -89,11 +92,11 @@ export const register = () => {
               saveUserInfo(user.displayName, user.email, user.uid);
             }
           })
-          .catch((error)=>{
+          .catch((error) => {
             console.log(error);
           });
       })
-      .catch((error)=>{
+      .catch((error) => {
         console.log(error);
       });
   });

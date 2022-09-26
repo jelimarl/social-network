@@ -52,3 +52,13 @@ export const saveUserInfo = (userName, userEmail, userID) => {
 export const getUserInfo = () => getDocs(collection(firestoreConnection, 'UserInfo'));
 
 export const onGetPost = (callback) => { onSnapshot(collection(firestoreConnection, 'Posts'), callback); };
+
+export const saveLocal = () => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const name = user.displayName;
+
+      sessionStorage.setItem('Nombre', name);
+    }
+  });
+};

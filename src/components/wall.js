@@ -1,5 +1,5 @@
 import {
-  savePost, onGetPost, getUserInfo,
+  savePost, onGetPost, getUserInfo, saveLocal,
 } from '../lib/firebaseServices.js';
 
 export const wall = () => {
@@ -23,7 +23,7 @@ export const wall = () => {
       <div class="wall__modal-info-user">
         <div class="wall__modal-user">
           <img class="wall__modal-profile-picture" src="http://imageshack.com/f/posCILFZp" alt="Profile Picture">
-          <h2 class="wall__modal-user-name"> Nunito</h2>
+          <h2 class="wall__modal-user-name">Nunito</h2>
         </div>
         <i class="wall__button wall__modal-exit-button fa-solid fa-xmark"></i>
       </div>
@@ -46,6 +46,7 @@ export const wall = () => {
   const textAreaPost = sectionWall.querySelector('.wall__modal-add-text');
   const wallInputs = sectionWall.querySelector('.wall__inputs');
 
+  // eslint-disable-next-line padded-blocks
   window.addEventListener('DOMContentLoaded', () => {
     const users = {};
     getUserInfo()
@@ -53,6 +54,9 @@ export const wall = () => {
         querySnapshot.forEach((doc) => {
           users[doc.data().userEmail] = doc.data().userName;
         });
+      })
+      .catch((error) => {
+        console.log(error);
       });
     onGetPost((querySnapshot) => {
       wallInputs.innerHTML = '';
@@ -86,7 +90,12 @@ export const wall = () => {
     });
   });
 
+  let name;
+  saveLocal(name);
   addPostButton.addEventListener('click', () => {
+    name = sessionStorage.getItem('Nombre');
+    console.log(name);
+
     modalAddPost.style.display = 'flex';
     wallInputs.style.display = 'none';
   });
