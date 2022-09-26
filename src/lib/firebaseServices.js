@@ -6,17 +6,15 @@ import {
 import {
   addDoc, collection, getFirestore, getDocs, onSnapshot,
 } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-firestore.js';
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-app.js';
-import { firebaseConfig } from './configFirebase.js';
+import { app } from './configFirebase.js';
+import { currentUser } from './currentUser.js';
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider(app);
 const firestoreConnection = getFirestore(app);
 
-provider.addScope('https://www.googleapis.com/auth/cloud-platform');
+// provider.addScope('https://www.googleapis.com/auth/cloud-platform');
 
 // Authentication
 // eslint-disable-next-line max-len
@@ -29,17 +27,18 @@ export const googleSignIn = () => signInWithPopup(auth, provider);
 
 // Save data
 export const savePost = (contentPost) => {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const name = user.displayName;
-      const email = user.email;
-      const uid = user.uid;
-      const photo = user.photoURL;
-      addDoc(collection(firestoreConnection, 'Posts'), {
-        contentPost, name, email, uid, photo,
-      });
-    }
-  });
+  if (currentUser) {
+    const name = currentUser.displayName;
+    const email = currentUser.email;
+    const uid = currentUser.uid;
+    const photo = currentUser.photoURL;
+    console.log({
+      contentPost, name, email, uid, photo,
+    });
+    addDoc(collection(firestoreConnection, 'Posts'), {
+      contentPost, name, email, uid, photo,
+    });
+  }
 };
 
 // Save user info

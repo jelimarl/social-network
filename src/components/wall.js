@@ -31,7 +31,7 @@ export const wall = () => {
     <div class="wall__modal-info-user">
       <div class="wall__modal-user">
         <img class="wall__modal-profile-picture" src="http://imageshack.com/f/posCILFZp" alt="Profile Picture">
-        <h2 class="wall__modal-user-name"> Nunito</h2>
+        <h2 class="wall__modal-user-name">${sessionStorage.getItem('Nombre')}</h2>
       </div>
       <i class="wall__button wall__modal-exit-button fa-solid fa-xmark"></i>
     </div>
@@ -57,31 +57,32 @@ export const wall = () => {
   // eslint-disable-next-line padded-blocks
   window.addEventListener('DOMContentLoaded', () => {
     const users = {};
-    getUserInfo()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          users[doc.data().userEmail] = doc.data().userName;
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // getUserInfo()
+    //   .then((querySnapshot) => {
+    //     querySnapshot.forEach((doc) => {
+    //       users[doc.data().userEmail] = doc.data().userName;
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+
     onGetPost((querySnapshot) => {
       wallInputs.innerHTML = '';
 
       // Traer nombre de usuario
       querySnapshot.forEach((doc) => {
-        let nameUser;
-        const userEntries = Object.entries(users);
-        if (!doc.data().name) {
-          userEntries.forEach(([key, value]) => {
-            if (doc.data().email === key) {
-              nameUser = value;
-            }
-          });
-        } else {
-          nameUser = doc.data().name;
-        }
+        // let nameUser;
+        // const userEntries = Object.entries(users);
+        // if (!doc.data().name) {
+        //   userEntries.forEach(([key, value]) => {
+        //     if (doc.data().email === key) {
+        //       nameUser = value;
+        //     }
+        //   });
+        // } else {
+        //   nameUser = doc.data().name;
+        // }
 
         const linkPhoto = 'https://imagizer.imageshack.com/img923/9210/UFd2QW.png';
         const photo = doc.data().photo ? doc.data().photo : linkPhoto;
@@ -89,7 +90,7 @@ export const wall = () => {
         <article class="post">
         <div class='post__user'>
           <img class='post__user-photo' src='${photo}' alt="profile picture">
-          <h2 class="post__username">${nameUser}</h2>
+          <h2 class="post__username">${doc.data().name}</h2>
           <i class="post__edit-delete-button fa-solid fa-ellipsis"></i>
         </div>
         <p class="post__message">${doc.data().contentPost}</p>

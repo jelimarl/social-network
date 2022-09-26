@@ -1,3 +1,4 @@
+import { updateProfile } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js';
 import {
   createUser, getUserInfo, googleSignIn, saveUserInfo, saveLocal,
 } from '../lib/firebaseServices.js';
@@ -45,7 +46,16 @@ export const register = () => {
     createUser(registerEmail.value, registerPassword.value)
       .then((userCredential) => {
         const user = userCredential.user;
-        user.displayName = registerUsername.value;
+        // user.displayName = registerUsername.value;
+        updateProfile(user, {
+          displayName: registerUsername.value,
+        }).then(() => {
+          console.log('Perfil actualizado');
+        }).catch((error) => {
+          // An error occurred
+          // ...
+        });
+
         saveLocal();
         // eslint-disable-next-line max-len
         saveUserInfo(user.displayName, user.email, user.uid);
