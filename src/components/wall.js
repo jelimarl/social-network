@@ -1,5 +1,6 @@
+import { getCurrentUser } from '../lib/currentUser.js';
 import {
-  savePost, onGetPost, getUserInfo, saveLocal,
+  savePost, onGetPost,
 } from '../lib/firebaseServices.js';
 
 export const wall = () => {
@@ -31,7 +32,7 @@ export const wall = () => {
     <div class="wall__modal-info-user">
       <div class="wall__modal-user">
         <img class="wall__modal-profile-picture" src="http://imageshack.com/f/posCILFZp" alt="Profile Picture">
-        <h2 class="wall__modal-user-name">${sessionStorage.getItem('Nombre')}</h2>
+        <h2 class="wall__modal-user-name"></h2>
       </div>
       <i class="wall__button wall__modal-exit-button fa-solid fa-xmark"></i>
     </div>
@@ -53,43 +54,23 @@ export const wall = () => {
   const postButton = sectionWall.querySelector('.wall__post-button');
   const textAreaPost = sectionWall.querySelector('.wall__modal-add-text');
   const wallInputs = sectionWall.querySelector('.wall__inputs');
+  const userNameAddPost = sectionWall.querySelector('.wall__modal-user-name');
 
   // eslint-disable-next-line padded-blocks
   window.addEventListener('DOMContentLoaded', () => {
-    const users = {};
-    // getUserInfo()
-    //   .then((querySnapshot) => {
-    //     querySnapshot.forEach((doc) => {
-    //       users[doc.data().userEmail] = doc.data().userName;
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-
     onGetPost((querySnapshot) => {
       wallInputs.innerHTML = '';
 
       // Traer nombre de usuario
       querySnapshot.forEach((doc) => {
-        // let nameUser;
-        // const userEntries = Object.entries(users);
-        // if (!doc.data().name) {
-        //   userEntries.forEach(([key, value]) => {
-        //     if (doc.data().email === key) {
-        //       nameUser = value;
-        //     }
-        //   });
-        // } else {
-        //   nameUser = doc.data().name;
-        // }
-
         const linkPhoto = 'https://imagizer.imageshack.com/img923/9210/UFd2QW.png';
         const photo = doc.data().photo ? doc.data().photo : linkPhoto;
         wallInputs.innerHTML += `
         <article class="post">
         <div class='post__user'>
+          <object class='post__user-photo' data="https://imagizer.imageshack.com/img923/9210/UFd2QW.png" type="image/png">
           <img class='post__user-photo' src='${photo}' alt="profile picture">
+          </object>
           <h2 class="post__username">${doc.data().name}</h2>
           <i class="post__edit-delete-button fa-solid fa-ellipsis"></i>
         </div>
@@ -110,12 +91,8 @@ export const wall = () => {
     });
   });
 
-  let name;
-  saveLocal(name);
   addPostButton.addEventListener('click', () => {
-    name = sessionStorage.getItem('Nombre');
-    console.log(name);
-
+    userNameAddPost.innerHTML = getCurrentUser();
     modalAddPost.style.display = 'flex';
     wallInputs.style.display = 'none';
   });

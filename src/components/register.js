@@ -1,7 +1,9 @@
+/* eslint-disable import/no-unresolved */
 import { updateProfile } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js';
 import {
-  createUser, getUserInfo, googleSignIn, saveUserInfo, saveLocal,
+  createUser, googleSignIn,
 } from '../lib/firebaseServices.js';
+import { getCurrentUser } from '../lib/currentUser.js';
 
 export const register = () => {
   const sectionRegister = document.createElement('section');
@@ -46,19 +48,15 @@ export const register = () => {
     createUser(registerEmail.value, registerPassword.value)
       .then((userCredential) => {
         const user = userCredential.user;
-        // user.displayName = registerUsername.value;
         updateProfile(user, {
           displayName: registerUsername.value,
         }).then(() => {
-          console.log('Perfil actualizado');
-        }).catch((error) => {
+          getCurrentUser();
+        }).catch(() => {
           // An error occurred
           // ...
         });
 
-        saveLocal();
-        // eslint-disable-next-line max-len
-        saveUserInfo(user.displayName, user.email, user.uid);
         window.location.hash = '#wall';
         registerForm.reset();
         registerUsername.value = '';
@@ -86,25 +84,9 @@ export const register = () => {
   const googleButton = sectionRegister.querySelector('.register__button-google');
   googleButton.addEventListener('click', () => {
     googleSignIn()
-      .then((result) => {
-        const user = result.user;
-        saveLocal();
+      .then(() => {
         window.location.hash = '#wall';
-
-        getUserInfo()
-          .then((querySnapshot) => {
-            const userEmail = [];
-            querySnapshot.forEach((doc) => {
-              userEmail.push(doc.data().userEmail);
-            });
-
-            if (!userEmail.includes(user.email)) {
-              saveUserInfo(user.displayName, user.email, user.uid);
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        getCurrentUser();
       })
       .catch((error) => {
         console.log(error);

@@ -1,10 +1,10 @@
 /* eslint-disable import/no-unresolved */
 import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider,
-  signInWithPopup, onAuthStateChanged,
+  signInWithPopup,
 } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js';
 import {
-  addDoc, collection, getFirestore, getDocs, onSnapshot,
+  addDoc, collection, getFirestore, onSnapshot,
 } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-firestore.js';
 import { app } from './configFirebase.js';
 import { currentUser } from './currentUser.js';
@@ -13,8 +13,6 @@ import { currentUser } from './currentUser.js';
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider(app);
 const firestoreConnection = getFirestore(app);
-
-// provider.addScope('https://www.googleapis.com/auth/cloud-platform');
 
 // Authentication
 // eslint-disable-next-line max-len
@@ -32,32 +30,12 @@ export const savePost = (contentPost) => {
     const email = currentUser.email;
     const uid = currentUser.uid;
     const photo = currentUser.photoURL;
-    console.log({
-      contentPost, name, email, uid, photo,
-    });
+
     addDoc(collection(firestoreConnection, 'Posts'), {
       contentPost, name, email, uid, photo,
     });
   }
 };
 
-// Save user info
-export const saveUserInfo = (userName, userEmail, userID) => {
-  addDoc(collection(firestoreConnection, 'UserInfo'), { userName, userEmail, userID });
-};
-
-// Get info
-
-export const getUserInfo = () => getDocs(collection(firestoreConnection, 'UserInfo'));
-
+// Get posts
 export const onGetPost = (callback) => { onSnapshot(collection(firestoreConnection, 'Posts'), callback); };
-
-export const saveLocal = () => {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const name = user.displayName;
-
-      sessionStorage.setItem('Nombre', name);
-    }
-  });
-};

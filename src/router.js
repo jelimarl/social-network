@@ -17,7 +17,6 @@ export const showSection = () => {
   const root = document.getElementById('root');
   const hash = window.location.hash;
   root.replaceChildren(template[hash]);
-  getCurrentUser();
 };
 
 window.addEventListener('load', showSection);

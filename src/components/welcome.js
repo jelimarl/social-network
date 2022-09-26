@@ -1,4 +1,5 @@
-import { googleSignIn, saveUserInfo, getUserInfo } from '../lib/firebaseServices.js';
+import { googleSignIn } from '../lib/firebaseServices.js';
+import { getCurrentUser } from '../lib/currentUser.js';
 
 export const welcome = () => {
   const sectionWelcome = document.createElement('section');
@@ -28,24 +29,9 @@ export const welcome = () => {
   const googleButton = sectionWelcome.querySelector('.welcome__button-google');
   googleButton.addEventListener('click', () => {
     googleSignIn()
-      .then((result) => {
-        const user = result.user;
+      .then(() => {
         window.location.hash = '#wall';
-
-        getUserInfo()
-          .then((querySnapshot) => {
-            const userEmail = [];
-            querySnapshot.forEach((doc) => {
-              userEmail.push(doc.data().userEmail);
-            });
-
-            if (!userEmail.includes(user.email)) {
-              saveUserInfo(user.displayName, user.email, user.uid);
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        getCurrentUser();
       })
       .catch((error) => {
         console.log(error);

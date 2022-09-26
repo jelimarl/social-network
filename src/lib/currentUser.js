@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js';
 import { app } from './configFirebase.js';
 
@@ -12,6 +13,7 @@ export const getCurrentUser = () => {
       currentUser.uid = user.uid;
       currentUser.photoURL = user.photoURL;
     }
-    console.log('Current User Actualizado');
   });
+
+  return currentUser.displayName;
 };

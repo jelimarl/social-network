@@ -1,6 +1,7 @@
 import {
-  loginUser, googleSignIn, saveUserInfo, getUserInfo,
+  loginUser, googleSignIn,
 } from '../lib/firebaseServices.js';
+import { getCurrentUser } from '../lib/currentUser.js';
 
 export const login = () => {
   const sectionLogin = document.createElement('section');
@@ -42,6 +43,7 @@ export const login = () => {
     loginUser(loginEmail.value, loginPassword.value)
       .then(() => {
         window.location.hash = '#wall';
+        getCurrentUser();
         loginForm.reset();
         loginErrorEmailNotFound.style.display = 'none';
         loginErrorWrongPassword.style.display = 'none';
@@ -67,24 +69,9 @@ export const login = () => {
   const googleButton = sectionLogin.querySelector('.register__button-google');
   googleButton.addEventListener('click', () => {
     googleSignIn()
-      .then((result) => {
-        const user = result.user;
+      .then(() => {
         window.location.hash = '#wall';
-
-        getUserInfo()
-          .then((querySnapshot) => {
-            const userEmail = [];
-            querySnapshot.forEach((doc) => {
-              userEmail.push(doc.data().userEmail);
-            });
-
-            if (!userEmail.includes(user.email)) {
-              saveUserInfo(user.displayName, user.email, user.uid);
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        getCurrentUser();
       })
       .catch((error) => {
         console.log(error);
