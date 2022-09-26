@@ -3,7 +3,7 @@ import { app } from './configFirebase.js';
 
 export const currentUser = {};
 
-window.addEventListener('load', () => {
+export const getCurrentUser = () => {
   const auth = getAuth(app);
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -14,4 +14,4 @@ window.addEventListener('load', () => {
     }
     console.log('Current User Actualizado');
   });
-});
+};

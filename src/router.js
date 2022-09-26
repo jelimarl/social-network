@@ -2,6 +2,7 @@ import { welcome } from './components/welcome.js';
 import { register } from './components/register.js';
 import { login } from './components/login.js';
 import { wall } from './components/wall.js';
+import { getCurrentUser } from './lib/currentUser.js';
 
 // Routing events
 
@@ -16,6 +17,7 @@ export const showSection = () => {
   const root = document.getElementById('root');
   const hash = window.location.hash;
   root.replaceChildren(template[hash]);
+  getCurrentUser();
 };
 
 window.addEventListener('load', showSection);
