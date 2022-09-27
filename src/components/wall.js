@@ -19,12 +19,16 @@ export const wall = () => {
 <section class="wall__inputs">
 </section>
 <div class="post__container-edit-delete-modal">
-  <section class="post__edit-delete-modal">
+<section class="post__edit-delete-modal">
+  <div class='edit__button'>
     <button class="post__edit-button  edit-delete-button-mobile"> <i class="fa-solid fa-pencil"></i></button>
     <p class="post__edit-delete-text">Edit</p>
+  </div>
+  <div class='delete__button'>
     <button class="post__delete-button edit-delete-button-mobile"><i class="fa-solid fa-trash"></i></button>
     <p post__edit-delete-text>Delete</p>
-  </section>
+  </div>
+</section>
 </div>
 <div class="wall__container-add-post-modal">
   <section class="wall__add-post-modal">
@@ -66,10 +70,12 @@ export const wall = () => {
         wallInputs.innerHTML += `
         <article class="post">
         <div class='post__user'>
-          <object class='post__user-photo' data="https://imagizer.imageshack.com/img923/9210/UFd2QW.png" type="image/png">
-          <img class='post__user-photo' src='${photo}' alt="profile picture">
-          </object>
-          <h2 class="post__username">${doc.data().name}</h2>
+          <div class='post__user-info'> 
+            <object class='post__user-photo' data="https://imagizer.imageshack.com/img923/9210/UFd2QW.png" type="image/png">
+            <img class='post__user-photo' src='${photo}' alt="profile picture">
+            </object>
+            <h2 class="post__username">${doc.data().name}</h2>
+          </div>
           <i class="post__edit-delete-button fa-solid fa-ellipsis"></i>
         </div>
         <p class="post__message">${doc.data().contentPost}</p>
@@ -86,6 +92,44 @@ export const wall = () => {
         </article>
         `;
       });
+      // Like & dislike
+      // const likeButton = wallInputs.querySelectorAll('.like-button-empty');
+      // const unlikeButton = wallInputs.querySelectorAll('.like-button-solid');
+      // console.log('like', likeButton)
+      // console.log('unlike', unlikeButton)
+      // likeButton.forEach((like) => {
+      //   like.addEventListener('click', () => {
+      //     like.style.display = 'none';
+      //     // unlikeButton.style.display = 'block';
+      //   });
+      // });
+
+      // unlikeButton.forEach((unlike) => {
+      //   unlike.addEventListener('click', () => {
+      //     unlikeButton.style.display = 'none';
+      //     likeButton.style.display = 'block';
+      //   });
+      // });
+
+      // modal esit & delete
+      const buttonModalDeleteEdit = wallInputs.querySelectorAll('.post__edit-delete-button');
+      const modalDeleteEditeContainer = sectionWall.querySelector('.post__container-edit-delete-modal');
+
+      buttonModalDeleteEdit.forEach((button) => {
+        button.addEventListener('click', () => {
+          modalDeleteEditeContainer.style.display = 'flex';
+          wallInputs.style.display = 'none';
+        });
+      });
+
+      // close modals
+      window.onclick = (event) => {
+        if (event.target === modalDeleteEditeContainer || event.target === modalAddPost) {
+          modalDeleteEditeContainer.style.display = 'none';
+          modalAddPost.style.display = 'none';
+          wallInputs.style.display = 'flex';
+        }
+      };
     });
   });
 
@@ -105,13 +149,6 @@ export const wall = () => {
     modalAddPost.style.display = 'none';
     wallInputs.style.display = 'flex';
   });
-
-  window.onclick = (event) => {
-    if (event.target === modalAddPost) {
-      modalAddPost.style.display = 'none';
-      wallInputs.style.display = 'flex';
-    }
-  };
 
   postButton.addEventListener('click', () => {
     if (textAreaPost.value === '') {
