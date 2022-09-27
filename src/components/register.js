@@ -1,9 +1,7 @@
-/* eslint-disable import/no-unresolved */
 import { updateProfile } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js';
 import {
-  createUser, googleSignIn,
+  createUser, googleSignIn, getCurrentUser,
 } from '../lib/firebaseServices.js';
-import { getCurrentUser } from '../lib/currentUser.js';
 
 export const register = () => {
   const sectionRegister = document.createElement('section');
@@ -48,14 +46,15 @@ export const register = () => {
     createUser(registerEmail.value, registerPassword.value)
       .then((userCredential) => {
         const user = userCredential.user;
+        const registerUsernameValue = registerUsername.value;
         updateProfile(user, {
-          displayName: registerUsername.value,
-        }).then(() => {
-          getCurrentUser();
-        }).catch(() => {
-          // An error occurred
-          // ...
-        });
+          displayName: registerUsernameValue,
+        })
+          .then(() => {
+            getCurrentUser();
+          }).catch((error) => {
+            console.log(error);
+          });
 
         window.location.hash = '#wall';
         registerForm.reset();

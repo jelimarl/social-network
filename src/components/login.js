@@ -1,7 +1,6 @@
 import {
-  loginUser, googleSignIn,
+  loginUser, googleSignIn, getCurrentUser,
 } from '../lib/firebaseServices.js';
-import { getCurrentUser } from '../lib/currentUser.js';
 
 export const login = () => {
   const sectionLogin = document.createElement('section');

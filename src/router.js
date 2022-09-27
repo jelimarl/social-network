@@ -2,7 +2,6 @@ import { welcome } from './components/welcome.js';
 import { register } from './components/register.js';
 import { login } from './components/login.js';
 import { wall } from './components/wall.js';
-import { getCurrentUser } from './lib/currentUser.js';
 
 // Routing events
 

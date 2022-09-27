@@ -1,6 +1,5 @@
-import { getCurrentUser, currentUser } from '../lib/currentUser.js';
 import {
-  savePost, onGetPost,
+  savePost, onGetPost, getCurrentUser, currentUser,
 } from '../lib/firebaseServices.js';
 
 export const wall = () => {

@@ -1,15 +1,16 @@
 /* eslint-disable import/no-unresolved */
 import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider,
-  signInWithPopup,
+  signInWithPopup, onAuthStateChanged,
 } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js';
 import {
   addDoc, collection, getFirestore, onSnapshot,
 } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-firestore.js';
-import { app } from './configFirebase.js';
-import { currentUser } from './currentUser.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-app.js';
+import { firebaseConfig } from './configFirebase.js';
 
 // Initialize Firebase
+const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider(app);
 const firestoreConnection = getFirestore(app);
@@ -22,6 +23,20 @@ export const loginUser = (email, password) => signInWithEmailAndPassword(auth, e
 // Authentication with Google
 // Popup
 export const googleSignIn = () => signInWithPopup(auth, provider);
+
+// Get current user
+export const currentUser = {};
+
+export const getCurrentUser = () => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      currentUser.displayName = user.displayName;
+      currentUser.email = user.email;
+      currentUser.uid = user.uid;
+      currentUser.photoURL = user.photoURL;
+    }
+  });
+};
 
 // Save data
 export const savePost = (contentPost) => {
