@@ -56,7 +56,6 @@ export const wall = () => {
   // eslint-disable-next-line padded-blocks
   window.addEventListener('DOMContentLoaded', () => {
     getCurrentUser();
-
     onGetPost((querySnapshot) => {
       wallInputs.innerHTML = '';
 
@@ -83,9 +82,9 @@ export const wall = () => {
           <button class="post__edit-button edit-delete-button-desktop"> <i class="fa-solid fa-pencil"></i></button>
           <button class="post__delete-button edit-delete-button-desktop"><i class="fa-solid fa-trash"></i></button>
         </div>
-      </div>
-      </article>
-          `;
+        </div>
+        </article>
+        `;
       });
     });
   });
@@ -119,7 +118,8 @@ export const wall = () => {
       // eslint-disable-next-line no-alert
       alert('No hay mensaje');
     } else {
-      savePost(textAreaPost.value);
+      const date = Date.now();
+      savePost(textAreaPost.value, date);
 
       modalAddPost.style.display = 'none';
       wallInputs.style.display = 'flex';

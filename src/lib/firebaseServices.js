@@ -4,7 +4,7 @@ import {
   signInWithPopup, onAuthStateChanged, updateProfile,
 } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js';
 import {
-  addDoc, collection, getFirestore, onSnapshot,
+  addDoc, collection, getFirestore, onSnapshot, query, orderBy,
 } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-firestore.js';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-app.js';
 import { firebaseConfig } from './configFirebase.js';
@@ -39,7 +39,7 @@ export const getCurrentUser = () => {
 };
 
 // Save data
-export const savePost = (contentPost) => {
+export const savePost = (contentPost, date) => {
   if (currentUser) {
     const name = currentUser.displayName;
     const email = currentUser.email;
@@ -47,13 +47,15 @@ export const savePost = (contentPost) => {
     const photo = currentUser.photoURL;
 
     addDoc(collection(firestoreConnection, 'Posts'), {
-      contentPost, name, email, uid, photo,
+      contentPost, name, email, uid, photo, date,
     });
   }
 };
 
-// Get posts
-export const onGetPost = (callback) => { onSnapshot(collection(firestoreConnection, 'Posts'), callback); };
+// Get posts & order posts
+export const onGetPost = (callback) => {
+  onSnapshot(query(collection(firestoreConnection, 'Posts'), orderBy('date', 'desc')), callback);
+};
 
 export const saveDisplayName = (registerUsernameValue) => updateProfile(auth.currentUser, {
   displayName: registerUsernameValue,
