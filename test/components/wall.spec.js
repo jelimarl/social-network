@@ -1,5 +1,5 @@
 import { wall } from '../../src/components/wall.js';
-import { getUserInfo, onGetPost } from '../../src/lib/firebaseServices.js';
+import { getCurrentUser, onGetPost } from '../../src/lib/firebaseServices.js';
 
 jest.mock('../../src/lib/firebaseServices.js');
 
@@ -7,7 +7,7 @@ describe('welcome', () => {
   it('Comprueba que funciona el evento click de Google', () => {
     wall();
     window.dispatchEvent(new Event('DOMContentLoaded'));
-    expect(getUserInfo).toBeCalled();
+    expect(getCurrentUser).toBeCalled();
   });
 
   it('Comprueba que funciona el evento click de Google2', () => {

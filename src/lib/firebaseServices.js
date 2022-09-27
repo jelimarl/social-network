@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider,
-  signInWithPopup, onAuthStateChanged,
+  signInWithPopup, onAuthStateChanged, updateProfile,
 } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js';
 import {
   addDoc, collection, getFirestore, onSnapshot,
@@ -54,3 +54,7 @@ export const savePost = (contentPost) => {
 
 // Get posts
 export const onGetPost = (callback) => { onSnapshot(collection(firestoreConnection, 'Posts'), callback); };
+
+export const saveDisplayName = (registerUsernameValue) => updateProfile(auth.currentUser, {
+  displayName: registerUsernameValue,
+});

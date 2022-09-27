@@ -1,6 +1,6 @@
-import { updateProfile } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js';
+// import { updateProfile } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js';
 import {
-  createUser, googleSignIn, getCurrentUser,
+  createUser, googleSignIn, getCurrentUser, saveDisplayName,
 } from '../lib/firebaseServices.js';
 
 export const register = () => {
@@ -44,12 +44,13 @@ export const register = () => {
 
   registerForm.addEventListener('submit', (event) => {
     createUser(registerEmail.value, registerPassword.value)
-      .then((userCredential) => {
-        const user = userCredential.user;
+      .then(() => {
+        // const user = userCredential.user;
         const registerUsernameValue = registerUsername.value;
-        updateProfile(user, {
-          displayName: registerUsernameValue,
-        })
+        // updateProfile(user, {
+        // displayName: registerUsernameValue,
+        // })
+        saveDisplayName(registerUsernameValue)
           .then(() => {
             getCurrentUser();
           }).catch((error) => {
