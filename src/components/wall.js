@@ -114,11 +114,21 @@ export const wall = () => {
       // modal esit & delete
       const buttonModalDeleteEdit = wallInputs.querySelectorAll('.post__edit-delete-button');
       const modalDeleteEditeContainer = sectionWall.querySelector('.post__container-edit-delete-modal');
+      const deleteButton = sectionWall.querySelector('.delete__button');
+      const editButton = sectionWall.querySelector('.edit__button');
 
       buttonModalDeleteEdit.forEach((button) => {
         button.addEventListener('click', () => {
           modalDeleteEditeContainer.style.display = 'flex';
           wallInputs.style.display = 'none';
+
+          deleteButton.addEventListener('click', () => {
+            console.log('Delete');
+          });
+
+          editButton.addEventListener('click', () => {
+            console.log('Edit');
+          });
         });
       });
 
