@@ -85,8 +85,11 @@ export const wall = () => {
           <p class="post__like-counter"></p>
         </div>
         <div class="post__edit-delete-container">
-          <button class="post__edit-button edit-delete-button-desktop"> <i class="fa-solid fa-pencil"></i></button>
-          <button class="post__delete-button edit-delete-button-desktop"><i class="fa-solid fa-trash"></i></button>
+          <button class="post__edit-button edit-delete-button-desktop"> <i class="fa-regular fa-pen-to-square"></i>
+          </button>
+          <button class="post__delete-button edit-delete-button-desktop"><i class="fa-regular fa-trash-can"></i>
+
+          </button>
         </div>
         </div>
         </article>
@@ -112,9 +115,10 @@ export const wall = () => {
         // });
 
         // modal esit & delete
-        const buttonModalDeleteEdit = wallInputs.querySelectorAll('.post__edit-delete-button');
-        const modalDeleteEditeContainer = sectionWall.querySelector('.post__container-edit-delete-modal');
-        const buttonDelete = sectionWall.querySelector('.delete__button');
+        // const buttonModalDeleteEdit = wallInputs.querySelectorAll('.post__edit-delete-button');
+        // eslint-disable-next-line max-len
+        // const modalDeleteEditeContainer = sectionWall.querySelector('.post__container-edit-delete-modal');
+        // const buttonDelete = sectionWall.querySelector('.delete__button');
 
         // wallInputs.addEventListener('click', (event) => {
         //   if (event.target.dataset.id) {
@@ -126,26 +130,25 @@ export const wall = () => {
         // buttonDelete.addEventListener('click', (event) => {
         //   console.log(event.target.dataset.id)
         // });
-        buttonModalDeleteEdit.forEach((button) => {
-          button.addEventListener('click', (event) => {
-            modalDeleteEditeContainer.style.display = 'flex';
-            wallInputs.style.display = 'none';
-            buttonDelete.addEventListener('click', () => {
-              const dataID = event.target.dataset.id;
-              if (confirm('Do you want delete the message?')) {
-                deletePost(dataID);
-                modalDeleteEditeContainer.style.display = 'none';
-                wallInputs.style.display = 'flex';
-              }
-            });
-            console.log(buttonDelete)
-          });
-        });
+        // buttonModalDeleteEdit.forEach((button) => {
+        //   button.addEventListener('click', (event) => {
+        //     modalDeleteEditeContainer.style.display = 'flex';
+        //     wallInputs.style.display = 'none';
+        //     buttonDelete.addEventListener('click', () => {
+        //       const dataID = event.target.dataset.id;
+        //       if (confirm('Do you want delete the message?')) {
+        //         deletePost(dataID);
+        //         modalDeleteEditeContainer.style.display = 'none';
+        //         wallInputs.style.display = 'flex';
+        //       }
+        //     });
+        //     console.log(buttonDelete);
+        //   });
+        // });
 
         // close modals
         window.onclick = (event) => {
-          if (event.target === modalDeleteEditeContainer || event.target === modalAddPost) {
-            modalDeleteEditeContainer.style.display = 'none';
+          if (event.target === modalAddPost) {
             modalAddPost.style.display = 'none';
             wallInputs.style.display = 'flex';
           }

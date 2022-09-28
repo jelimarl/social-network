@@ -119,7 +119,7 @@
 }
 
 .post {
-    min-height: 18rem;
+    min-height: 22rem;
     padding: 2rem;
 }
 
@@ -136,6 +136,14 @@
  .post__message{
      margin: 0 0.5rem 1rem 0.5rem;
      font-size: 2.5rem;
+ }
+
+ .post__like-button {
+    font-size: 4rem;
+ }
+
+ .edit-delete-button-desktop {
+    font-size: 3.5rem;
  }
 
 .wall__footer {

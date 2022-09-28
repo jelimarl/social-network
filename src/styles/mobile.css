@@ -309,6 +309,7 @@ html {
 
 .post__edit-delete-button {
     font-size: 2.5rem;
+    display: none;
 }
 
 .post__message{
@@ -316,14 +317,20 @@ html {
     font-size: 1.7rem;
 }
 
+.post__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
 .post__like-button {
     border: none;
-    font-size: 2.5rem;
+    font-size: 3rem;
     background-color: transparent;
     background: -webkit-linear-gradient(var(--secondary-color), var(--primary-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    cursor: pointer;
 }
 
 .like-button-empty {
@@ -335,7 +342,13 @@ html {
 }
 
 .edit-delete-button-desktop {
-    display: none;
+    border: none;
+    font-size: 2.5rem;
+    background-color: transparent;
+    background: -webkit-linear-gradient(var(--secondary-color), var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 2rem;
 }
 
 .post__container-edit-delete-modal {

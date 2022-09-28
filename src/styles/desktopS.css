@@ -192,7 +192,7 @@
 
 .post {
     width: 100%;
-    min-height: 14rem;
+    min-height: 17rem;
     padding: 1.5rem;
     background-color: var(--dark-color);
     color: white;
@@ -218,6 +218,14 @@
 .post__message{
     margin: 0 0.5rem 1rem 0.5rem;
     font-size: 1.7rem;
+}
+
+.post__like-button {
+    font-size: 3rem;
+}
+
+.edit-delete-button-desktop {
+    font-size: 2.5rem ;
 }
 
 .wall__add-post-modal {
