@@ -21,12 +21,12 @@ export const wall = () => {
 <div class="post__container-edit-delete-modal">
 <section class="post__edit-delete-modal">
   <div class='edit__button'>
-    <button class="post__edit-button  edit-delete-button-mobile"> <i class="fa-solid fa-pencil"></i></button>
+    <button class="post__edit-button  edit-delete-button-mobile"><div><i class="fa-solid fa-pencil"></i></div></button>
     <p class="post__edit-delete-text">Edit</p>
   </div>
   <div class='delete__button'>
-    <button class="post__delete-button edit-delete-button-mobile"><i class="fa-solid fa-trash"></i></button>
-    <p post__edit-delete-text>Delete</p>
+    <button class="post__delete-button edit-delete-button-mobile"><div><i class="fa-solid fa-trash"></i></div></button>
+    <p class="post__edit-delete-text">Delete</p>
   </div>
 </section>
 </div>
@@ -70,7 +70,7 @@ export const wall = () => {
         wallInputs.innerHTML += `
         <article class="post">
         <div class='post__user'>
-          <div class='post__user-info'> 
+          <div class='post__user-info'>
             <object class='post__user-photo' data="https://imagizer.imageshack.com/img923/9210/UFd2QW.png" type="image/png">
             <img class='post__user-photo' src='${photo}' alt="profile picture">
             </object>

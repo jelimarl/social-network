@@ -367,14 +367,30 @@ html {
     align-items: center;
 }
 
-.edit-delete-button-mobile{
-    background-color: transparent;
+.edit-delete-button-mobile {
+    background: var(--background-gradient);
     width: 7rem;
     height: 7rem;
-    font-size: 4rem;
+    font-size: 3.7rem;
     color: white;
     border-radius: 50%;
-    border-color: white;
+    border: transparent;
+    padding: 0.2rem;
+}
+
+.edit-delete-button-mobile div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark-color);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.post__edit-delete-text {
+    margin-top: 0.4rem;
+    font-size: 1.4rem;
 }
 
 .wall__container-add-post-modal {
