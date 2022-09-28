@@ -116,16 +116,29 @@ export const wall = () => {
         const modalDeleteEditeContainer = sectionWall.querySelector('.post__container-edit-delete-modal');
         const buttonDelete = sectionWall.querySelector('.delete__button');
 
+        // wallInputs.addEventListener('click', (event) => {
+        //   if (event.target.dataset.id) {
+        //     modalDeleteEditeContainer.style.display = 'flex';
+        //     wallInputs.style.display = 'none';
+        //   }
+        // });
+
+        // buttonDelete.addEventListener('click', (event) => {
+        //   console.log(event.target.dataset.id)
+        // });
         buttonModalDeleteEdit.forEach((button) => {
           button.addEventListener('click', (event) => {
             modalDeleteEditeContainer.style.display = 'flex';
             wallInputs.style.display = 'none';
             buttonDelete.addEventListener('click', () => {
               const dataID = event.target.dataset.id;
-              // if (confirm('Do you want delete the message?')) {
-              deletePost(dataID);
-              // }
+              if (confirm('Do you want delete the message?')) {
+                deletePost(dataID);
+                modalDeleteEditeContainer.style.display = 'none';
+                wallInputs.style.display = 'flex';
+              }
             });
+            console.log(buttonDelete)
           });
         });
 
