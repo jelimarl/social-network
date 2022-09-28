@@ -4,7 +4,7 @@ import {
   signInWithPopup, onAuthStateChanged, updateProfile,
 } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js';
 import {
-  addDoc, collection, getFirestore, onSnapshot, query, orderBy,
+  addDoc, collection, getFirestore, onSnapshot, query, orderBy, deleteDoc, doc,
 } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-firestore.js';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-app.js';
 import { firebaseConfig } from './configFirebase.js';
@@ -60,3 +60,5 @@ export const onGetPost = (callback) => {
 export const saveDisplayName = (registerUsernameValue) => updateProfile(auth.currentUser, {
   displayName: registerUsernameValue,
 });
+
+export const deletePost = (id) => deleteDoc(doc(firestoreConnection, 'Posts', id));
