@@ -321,7 +321,6 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
 }
 
 .post__like-button {
@@ -331,14 +330,16 @@ html {
     background: -webkit-linear-gradient(var(--secondary-color), var(--primary-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    cursor: pointer;
 }
 
 .like-button-empty {
-    display: block; 
+    display: block;
+    cursor: pointer;
 }
 
 .like-button-solid {
-    display: none; 
+    display: none;
 }
 
 .edit-delete-button-desktop {
@@ -349,6 +350,7 @@ html {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-left: 2rem;
+    cursor: pointer;
 }
 
 .post__container-edit-delete-modal {

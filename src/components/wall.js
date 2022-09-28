@@ -76,7 +76,7 @@ export const wall = () => {
             </object>
             <h2 class="post__username">${doc.data().name}</h2>
           </div>
-          <i class="post__edit-delete-button fa-solid fa-ellipsis" data-id='${doc.id}'></i>
+          <i class="post__edit-delete-button fa-solid fa-ellipsis"></i>
         </div>
         <p class="post__message">${doc.data().contentPost}</p>
         <div class="post__buttons">
@@ -85,10 +85,9 @@ export const wall = () => {
           <p class="post__like-counter"></p>
         </div>
         <div class="post__edit-delete-container">
-          <button class="post__edit-button edit-delete-button-desktop"> <i class="fa-regular fa-pen-to-square"></i>
+          <button class="post__edit-button edit-delete-button-desktop"><i class="fa-regular fa-pen-to-square" data-id='${doc.id}'></i>
           </button>
-          <button class="post__delete-button edit-delete-button-desktop"><i class="fa-regular fa-trash-can"></i>
-
+          <button class="post__delete-button edit-delete-button-desktop"><i class="fa-regular fa-trash-can" data-id='${doc.id}'></i>
           </button>
         </div>
         </div>
@@ -145,6 +144,18 @@ export const wall = () => {
         //     console.log(buttonDelete);
         //   });
         // });
+
+        const deleteButton = wallInputs.querySelectorAll('.post__delete-button');
+
+        // Delete post
+        deleteButton.forEach((button) => {
+          button.addEventListener('click', (event) => {
+            const dataID = event.target.dataset.id;
+            if (confirm('Do you want to delete the post?')) {
+              deletePost(dataID);
+            }
+          });
+        });
 
         // close modals
         window.onclick = (event) => {
