@@ -1,5 +1,5 @@
 import {
-  savePost, onGetPost, getCurrentUser, currentUser,
+  savePost, onGetPost, getCurrentUser, currentUser, deletePost,
 } from '../lib/firebaseServices.js';
 
 export const wall = () => {
@@ -76,7 +76,7 @@ export const wall = () => {
             </object>
             <h2 class="post__username">${doc.data().name}</h2>
           </div>
-          <i class="post__edit-delete-button fa-solid fa-ellipsis"></i>
+          <i class="post__edit-delete-button fa-solid fa-ellipsis" data-id='${doc.id}'></i>
         </div>
         <p class="post__message">${doc.data().contentPost}</p>
         <div class="post__buttons">
@@ -91,48 +91,55 @@ export const wall = () => {
         </div>
         </article>
         `;
-      });
-      // Like & dislike
-      // const likeButton = wallInputs.querySelectorAll('.like-button-empty');
-      // const unlikeButton = wallInputs.querySelectorAll('.like-button-solid');
-      // console.log('like', likeButton)
-      // console.log('unlike', unlikeButton)
-      // likeButton.forEach((like) => {
-      //   like.addEventListener('click', () => {
-      //     like.style.display = 'none';
-      //     // unlikeButton.style.display = 'block';
-      //   });
-      // });
 
-      // unlikeButton.forEach((unlike) => {
-      //   unlike.addEventListener('click', () => {
-      //     unlikeButton.style.display = 'none';
-      //     likeButton.style.display = 'block';
-      //   });
-      // });
+        // Like & dislike
+        // const likeButton = wallInputs.querySelectorAll('.like-button-empty');
+        // const unlikeButton = wallInputs.querySelectorAll('.like-button-solid');
+        // console.log('like', likeButton)
+        // console.log('unlike', unlikeButton)
+        // likeButton.forEach((like) => {
+        //   like.addEventListener('click', () => {
+        //     like.style.display = 'none';
+        //     // unlikeButton.style.display = 'block';
+        //   });
+        // });
 
-      // modal esit & delete
-      const buttonModalDeleteEdit = wallInputs.querySelectorAll('.post__edit-delete-button');
-      const modalDeleteEditeContainer = sectionWall.querySelector('.post__container-edit-delete-modal');
+        // unlikeButton.forEach((unlike) => {
+        //   unlike.addEventListener('click', () => {
+        //     unlikeButton.style.display = 'none';
+        //     likeButton.style.display = 'block';
+        //   });
+        // });
 
-      buttonModalDeleteEdit.forEach((button) => {
-        button.addEventListener('click', () => {
-          modalDeleteEditeContainer.style.display = 'flex';
-          wallInputs.style.display = 'none';
+        // modal esit & delete
+        const buttonModalDeleteEdit = wallInputs.querySelectorAll('.post__edit-delete-button');
+        const modalDeleteEditeContainer = sectionWall.querySelector('.post__container-edit-delete-modal');
+        const buttonDelete = sectionWall.querySelector('.delete__button');
+
+        buttonModalDeleteEdit.forEach((button) => {
+          button.addEventListener('click', (event) => {
+            modalDeleteEditeContainer.style.display = 'flex';
+            wallInputs.style.display = 'none';
+            buttonDelete.addEventListener('click', () => {
+              const dataID = event.target.dataset.id;
+              // if (confirm('Do you want delete the message?')) {
+              deletePost(dataID);
+              // }
+            });
+          });
         });
-      });
 
-      // close modals
-      window.onclick = (event) => {
-        if (event.target === modalDeleteEditeContainer || event.target === modalAddPost) {
-          modalDeleteEditeContainer.style.display = 'none';
-          modalAddPost.style.display = 'none';
-          wallInputs.style.display = 'flex';
-        }
-      };
+        // close modals
+        window.onclick = (event) => {
+          if (event.target === modalDeleteEditeContainer || event.target === modalAddPost) {
+            modalDeleteEditeContainer.style.display = 'none';
+            modalAddPost.style.display = 'none';
+            wallInputs.style.display = 'flex';
+          }
+        };
+      });
     });
   });
-
   addPostButton.addEventListener('click', () => {
     userInfoAddPostModal.innerHTML = `
     <object class='wall__modal-profile-picture' data="https://imagizer.imageshack.com/img923/9210/UFd2QW.png" type="image/png">
