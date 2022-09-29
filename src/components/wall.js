@@ -1,5 +1,5 @@
 import {
-  savePost, onGetPost, getCurrentUser, currentUser, deletePost,
+  savePost, onGetPost, getCurrentUser, currentUser, deletePost, getPost, editPost,
 } from '../lib/firebaseServices.js';
 
 export const wall = () => {
@@ -56,6 +56,8 @@ export const wall = () => {
   const textAreaPost = sectionWall.querySelector('.wall__modal-add-text');
   const wallInputs = sectionWall.querySelector('.wall__inputs');
   const userInfoAddPostModal = sectionWall.querySelector('.wall__modal-user');
+  let editStatus = false;
+  let docID = '';
 
   // eslint-disable-next-line padded-blocks
   window.addEventListener('DOMContentLoaded', () => {
@@ -146,6 +148,7 @@ export const wall = () => {
         // });
 
         const deleteButton = wallInputs.querySelectorAll('.post__delete-button');
+        const editButton = wallInputs.querySelectorAll('.post__edit-button');
 
         // Delete post
         deleteButton.forEach((button) => {
@@ -154,6 +157,32 @@ export const wall = () => {
             if (confirm('Do you want to delete the post?')) {
               deletePost(dataID);
             }
+          });
+        });
+
+        // Edit post
+        editButton.forEach((button) => {
+          button.addEventListener('click', (event) => {
+            docID = event.target.dataset.id;
+            editStatus = true;
+
+            modalAddPost.style.display = 'flex';
+            postButton.innerText = 'Update';
+            wallInputs.style.display = 'none';
+
+            getPost(docID)
+              .then((document) => {
+                const post = document.data();
+
+                userInfoAddPostModal.innerHTML = `
+                <object class='wall__modal-profile-picture' data="https://imagizer.imageshack.com/img923/9210/UFd2QW.png" type="image/png">
+                <img class="wall__modal-profile-picture" src="${post.photo}" alt="Profile Picture">
+                </object>
+                <h2 class="wall__modal-user-name">${post.name}</h2>
+                `;
+
+                textAreaPost.value = `${post.contentPost}`;
+              });
           });
         });
 
@@ -167,6 +196,7 @@ export const wall = () => {
       });
     });
   });
+
   addPostButton.addEventListener('click', () => {
     userInfoAddPostModal.innerHTML = `
     <object class='wall__modal-profile-picture' data="https://imagizer.imageshack.com/img923/9210/UFd2QW.png" type="image/png">
@@ -176,6 +206,7 @@ export const wall = () => {
     `;
     textAreaPost.value = '';
     modalAddPost.style.display = 'flex';
+    postButton.innerText = 'Post';
     wallInputs.style.display = 'none';
   });
 
@@ -189,8 +220,14 @@ export const wall = () => {
       // eslint-disable-next-line no-alert
       alert('No hay mensaje');
     } else {
-      const date = Date.now();
-      savePost(textAreaPost.value, date);
+      if (!editStatus) {
+        const date = Date.now();
+        savePost(textAreaPost.value, date);
+      } else {
+        // const content = textAreaPost.value;
+        editPost(docID, { contentPost: textAreaPost.value  });
+        editStatus = false;
+      }
 
       modalAddPost.style.display = 'none';
       wallInputs.style.display = 'flex';
