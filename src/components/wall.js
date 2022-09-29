@@ -1,5 +1,7 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-restricted-globals */
 import {
-  savePost, onGetPost, getCurrentUser, currentUser, deletePost, getPost, editPost,
+  savePost, onGetPost, getCurrentUser, currentUser, deletePost, getPost, editPost, logOut,
 } from '../lib/firebaseServices.js';
 
 export const wall = () => {
@@ -12,7 +14,7 @@ export const wall = () => {
     <h2 class="wall__title">SysTEM</h2>
   </div>
   <div class="wall__button wall__logout">
-    <p>Log out</p>
+    <p class="wall__logout-text">Log out</p>
     <i class="wall__logout-icon fa-solid fa-person-walking-arrow-right"></i>
   </div>
 </header>
@@ -56,6 +58,8 @@ export const wall = () => {
   const textAreaPost = sectionWall.querySelector('.wall__modal-add-text');
   const wallInputs = sectionWall.querySelector('.wall__inputs');
   const userInfoAddPostModal = sectionWall.querySelector('.wall__modal-user');
+  const logOutButtonIcon = sectionWall.querySelector('.wall__logout-icon');
+  const logOutButtonText = sectionWall.querySelector('.wall__logout-text');
   let editStatus = false;
   let docID = '';
 
@@ -224,13 +228,38 @@ export const wall = () => {
         const date = Date.now();
         savePost(textAreaPost.value, date);
       } else {
-        // const content = textAreaPost.value;
-        editPost(docID, { contentPost: textAreaPost.value  });
+        editPost(docID, { contentPost: textAreaPost.value });
         editStatus = false;
       }
 
       modalAddPost.style.display = 'none';
       wallInputs.style.display = 'flex';
+    }
+  });
+
+  logOutButtonIcon.addEventListener('click', () => {
+    if (confirm('Are you sure you want to leave?')) {
+      logOut()
+        .then(() => {
+          // console.log('Hola');
+          window.location.hash = '';
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  });
+
+  logOutButtonText.addEventListener('click', () => {
+    if (confirm('Are you sure you want to leave?')) {
+      logOut()
+        .then(() => {
+          // console.log('Hola');
+          window.location.hash = '';
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   });
 

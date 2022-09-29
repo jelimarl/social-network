@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider,
-  signInWithPopup, onAuthStateChanged, updateProfile,
+  signInWithPopup, onAuthStateChanged, updateProfile, signOut,
 } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js';
 import {
   // eslint-disable-next-line max-len
@@ -39,6 +39,9 @@ export const getCurrentUser = () => {
   });
 };
 
+// Sign out
+export const logOut = () => signOut(auth);
+
 // Save data
 export const savePost = (contentPost, date) => {
   if (currentUser) {
@@ -70,3 +73,4 @@ export const deletePost = (id) => deleteDoc(doc(firestoreConnection, 'Posts', id
 
 // Edit post
 export const editPost = (id, newContentPost) => updateDoc(doc(firestoreConnection, 'Posts', id), newContentPost);
+
