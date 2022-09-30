@@ -2,7 +2,7 @@
 /* eslint-disable no-restricted-globals */
 import {
   // eslint-disable-next-line max-len
-  savePost, onGetPost, getCurrentUser, currentUser, deletePost, getPost, editPost, logOut, likePost, dislikePost
+  savePost, onGetPost, getCurrentUser, currentUser, deletePost, getPost, editPost, logOut, likePost, dislikePost,
 } from '../lib/firebaseServices.js';
 
 export const wall = () => {
@@ -74,32 +74,56 @@ export const wall = () => {
       querySnapshot.forEach((doc) => {
         const linkPhoto = 'https://imagizer.imageshack.com/img923/9210/UFd2QW.png';
         const photo = doc.data().photo ? doc.data().photo : linkPhoto;
-        wallInputs.innerHTML += `
-        <article class="post">
-        <div class='post__user'>
-          <div class='post__user-info'>
-            <object class='post__user-photo' data="https://imagizer.imageshack.com/img923/9210/UFd2QW.png" type="image/png">
-            <img class='post__user-photo' src='${photo}' alt="profile picture">
-            </object>
-            <h2 class="post__username">${doc.data().name}</h2>
+
+        if (doc.data().uid === currentUser.uid) {
+          wallInputs.innerHTML += `
+          <article class="post">
+          <div class='post__user'>
+            <div class='post__user-info'>
+              <object class='post__user-photo' data="https://imagizer.imageshack.com/img923/9210/UFd2QW.png" type="image/png">
+              <img class='post__user-photo' src='${photo}' alt="profile picture">
+              </object>
+              <h2 class="post__username">${doc.data().name}</h2>
+            </div>
+            <i class="post__edit-delete-button fa-solid fa-ellipsis"></i>
           </div>
-          <i class="post__edit-delete-button fa-solid fa-ellipsis"></i>
-        </div>
-        <p class="post__message">${doc.data().contentPost}</p>
-        <div class="post__buttons">
-        <div class="post__like-container">
-          <button class="post__like-button"><i class="like-button-empty fa-regular fa-heart" data-id='${doc.id}'></i><i class="like-button-solid fa-solid fa-heart" data-id='${doc.id}'></i></button>
-          <p class="post__like-counter">${doc.data().counterLikes}</p>
-        </div>
-        <div class="post__edit-delete-container">
-          <button class="post__edit-button edit-delete-button-desktop"><i class="fa-regular fa-pen-to-square" data-id='${doc.id}'></i>
-          </button>
-          <button class="post__delete-button edit-delete-button-desktop"><i class="fa-regular fa-trash-can" data-id='${doc.id}'></i>
-          </button>
-        </div>
-        </div>
-        </article>
-        `;
+          <p class="post__message">${doc.data().contentPost}</p>
+          <div class="post__buttons">
+          <div class="post__like-container">
+            <button class="post__like-button"><i class="like-button-empty fa-regular fa-heart" data-id='${doc.id}'></i><i class="like-button-solid fa-solid fa-heart" data-id='${doc.id}'></i></button>
+            <p class="post__like-counter">${doc.data().counterLikes}</p>
+          </div>
+          <div class="post__edit-delete-container">
+            <button class="post__edit-button edit-delete-button-desktop"><i class="fa-regular fa-pen-to-square" data-id='${doc.id}'></i>
+            </button>
+            <button class="post__delete-button edit-delete-button-desktop"><i class="fa-regular fa-trash-can" data-id='${doc.id}'></i>
+            </button>
+          </div>
+          </div>
+          </article>
+          `;
+        } else {
+          wallInputs.innerHTML += `
+          <article class="post">
+          <div class='post__user'>
+            <div class='post__user-info'>
+              <object class='post__user-photo' data="https://imagizer.imageshack.com/img923/9210/UFd2QW.png" type="image/png">
+              <img class='post__user-photo' src='${photo}' alt="profile picture">
+              </object>
+              <h2 class="post__username">${doc.data().name}</h2>
+            </div>
+            <i class="post__edit-delete-button fa-solid fa-ellipsis"></i>
+          </div>
+          <p class="post__message">${doc.data().contentPost}</p>
+          <div class="post__buttons">
+          <div class="post__like-container">
+            <button class="post__like-button"><i class="like-button-empty fa-regular fa-heart" data-id='${doc.id}'></i><i class="like-button-solid fa-solid fa-heart" data-id='${doc.id}'></i></button>
+            <p class="post__like-counter">${doc.data().counterLikes}</p>
+          </div>
+          </div>
+          </article>
+          `;
+        }
 
         // Like & dislike
         // const likeButton = wallInputs.querySelectorAll('.like-button-empty');
@@ -153,11 +177,48 @@ export const wall = () => {
         // });
 
         const deleteButton = wallInputs.querySelectorAll('.post__delete-button');
+        // console.log(deleteButton);
         const editButton = wallInputs.querySelectorAll('.post__edit-button');
+        // console.log(editButton);
         const likeButton = wallInputs.querySelectorAll('.like-button-empty');
-        const unlikeButton = wallInputs.querySelectorAll('.like-button-solid');
 
-        // // Like
+        // Edit post
+        editButton.forEach((button) => {
+          button.addEventListener('click', (event) => {
+            docID = event.target.dataset.id;
+            editStatus = true;
+
+            modalAddPost.style.display = 'flex';
+            postButton.innerText = 'Update';
+            wallInputs.style.display = 'none';
+
+            getPost(docID)
+              .then((document) => {
+                const post = document.data();
+
+                userInfoAddPostModal.innerHTML = `
+                    <object class='wall__modal-profile-picture' data="https://imagizer.imageshack.com/img923/9210/UFd2QW.png" type="image/png">
+                    <img class="wall__modal-profile-picture" src="${post.photo}" alt="Profile Picture">
+                    </object>
+                    <h2 class="wall__modal-user-name">${post.name}</h2>
+                    `;
+
+                textAreaPost.value = `${post.contentPost}`;
+              });
+          });
+        });
+
+        // Delete post
+        deleteButton.forEach((button) => {
+          button.addEventListener('click', (event) => {
+            const dataID = event.target.dataset.id;
+            if (confirm('Do you want to delete the post?')) {
+              deletePost(dataID);
+            }
+          });
+        });
+
+        // Like
         likeButton.forEach((like) => {
           like.addEventListener('click', (event) => {
             const currentUserLike = currentUser.uid;
@@ -176,76 +237,16 @@ export const wall = () => {
               .catch((error) => {
                 console.log(error);
               });
-            // Intento con for each
-            // unlikeButton.forEach((unlike) => {
-            //   if (unlike.dataset.id === idLikeButton) {
-            //     like.style.display = 'none';
-            //     unlike.style.display = 'block';
-            //     console.log('Hola');
-            //   }
 
-            // Intento con for
-            // for (let i = 0; i < likeButton.length; i++) {
-            //   const unlike = unlikeButton[i];
-            //   if (unlike.dataset.id === idLikeButton) {
-            //     like.style.display = 'none';
-            //     unlike.style.display = 'block';
-            //     break;
-            //   }
+            // close modals
+            window.onclick = (event) => {
+              if (event.target === modalAddPost) {
+                modalAddPost.style.display = 'none';
+                wallInputs.style.display = 'flex';
+              }
+            };
           });
         });
-        // if (like.style.display !== 'none') {
-        //   like.style.display = 'none';
-        // } else {
-        //   console.log('Adiós');
-        // }
-        // like.style.display = 'none';
-        // unlikeButton.style.display = 'block';
-        // });
-        // });
-        // Delete post
-        deleteButton.forEach((button) => {
-          button.addEventListener('click', (event) => {
-            const dataID = event.target.dataset.id;
-            if (confirm('Do you want to delete the post?')) {
-              deletePost(dataID);
-            }
-          });
-        });
-
-        // Edit post
-        editButton.forEach((button) => {
-          button.addEventListener('click', (event) => {
-            docID = event.target.dataset.id;
-            editStatus = true;
-
-            modalAddPost.style.display = 'flex';
-            postButton.innerText = 'Update';
-            wallInputs.style.display = 'none';
-
-            getPost(docID)
-              .then((document) => {
-                const post = document.data();
-
-                userInfoAddPostModal.innerHTML = `
-                <object class='wall__modal-profile-picture' data="https://imagizer.imageshack.com/img923/9210/UFd2QW.png" type="image/png">
-                <img class="wall__modal-profile-picture" src="${post.photo}" alt="Profile Picture">
-                </object>
-                <h2 class="wall__modal-user-name">${post.name}</h2>
-                `;
-
-                textAreaPost.value = `${post.contentPost}`;
-              });
-          });
-        });
-
-        // close modals
-        window.onclick = (event) => {
-          if (event.target === modalAddPost) {
-            modalAddPost.style.display = 'none';
-            wallInputs.style.display = 'flex';
-          }
-        };
       });
     });
   });
