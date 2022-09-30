@@ -72,8 +72,7 @@ export const login = () => {
         window.location.hash = '#wall';
         getCurrentUser();
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
       });
   });
 

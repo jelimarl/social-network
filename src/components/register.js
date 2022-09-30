@@ -53,8 +53,7 @@ export const register = () => {
         saveDisplayName(registerUsernameValue)
           .then(() => {
             getCurrentUser();
-          }).catch((error) => {
-            console.log(error);
+          }).catch(() => {
           });
 
         window.location.hash = '#wall';
@@ -88,8 +87,7 @@ export const register = () => {
         window.location.hash = '#wall';
         getCurrentUser();
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
       });
   });
 

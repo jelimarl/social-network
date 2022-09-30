@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-alert */
 /* eslint-disable no-restricted-globals */
 import {
@@ -125,61 +126,8 @@ export const wall = () => {
           `;
         }
 
-        // Like & dislike
-        // const likeButton = wallInputs.querySelectorAll('.like-button-empty');
-        // const unlikeButton = wallInputs.querySelectorAll('.like-button-solid');
-        // console.log('like', likeButton)
-        // console.log('unlike', unlikeButton)
-        // likeButton.forEach((like) => {
-        //   like.addEventListener('click', () => {
-        //     like.style.display = 'none';
-        //     // unlikeButton.style.display = 'block';
-        //   });
-        // });
-
-        // unlikeButton.forEach((unlike) => {
-        //   unlike.addEventListener('click', () => {
-        //     unlikeButton.style.display = 'none';
-        //     likeButton.style.display = 'block';
-        //   });
-        // });
-
-        // modal esit & delete
-        // const buttonModalDeleteEdit = wallInputs.querySelectorAll('.post__edit-delete-button');
-        // eslint-disable-next-line max-len
-        // const modalDeleteEditeContainer = sectionWall.querySelector('.post__container-edit-delete-modal');
-        // const buttonDelete = sectionWall.querySelector('.delete__button');
-
-        // wallInputs.addEventListener('click', (event) => {
-        //   if (event.target.dataset.id) {
-        //     modalDeleteEditeContainer.style.display = 'flex';
-        //     wallInputs.style.display = 'none';
-        //   }
-        // });
-
-        // buttonDelete.addEventListener('click', (event) => {
-        //   console.log(event.target.dataset.id)
-        // });
-        // buttonModalDeleteEdit.forEach((button) => {
-        //   button.addEventListener('click', (event) => {
-        //     modalDeleteEditeContainer.style.display = 'flex';
-        //     wallInputs.style.display = 'none';
-        //     buttonDelete.addEventListener('click', () => {
-        //       const dataID = event.target.dataset.id;
-        //       if (confirm('Do you want delete the message?')) {
-        //         deletePost(dataID);
-        //         modalDeleteEditeContainer.style.display = 'none';
-        //         wallInputs.style.display = 'flex';
-        //       }
-        //     });
-        //     console.log(buttonDelete);
-        //   });
-        // });
-
         const deleteButton = wallInputs.querySelectorAll('.post__delete-button');
-        // console.log(deleteButton);
         const editButton = wallInputs.querySelectorAll('.post__edit-button');
-        // console.log(editButton);
         const likeButton = wallInputs.querySelectorAll('.like-button-empty');
 
         // Edit post
@@ -234,8 +182,7 @@ export const wall = () => {
                   dislikePost(idLikeButton, likes, currentUserLike);
                 }
               })
-              .catch((error) => {
-                console.log(error);
+              .catch(() => {
               });
 
             // close modals
@@ -293,8 +240,7 @@ export const wall = () => {
         .then(() => {
           window.location.hash = '';
         })
-        .catch((error) => {
-          console.log(error);
+        .catch(() => {
         });
     }
   });
@@ -305,8 +251,7 @@ export const wall = () => {
         .then(() => {
           window.location.hash = '';
         })
-        .catch((error) => {
-          console.log(error);
+        .catch(() => {
         });
     }
   });
