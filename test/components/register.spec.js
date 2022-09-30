@@ -17,4 +17,21 @@ describe('register', () => {
     buttonCreate.dispatchEvent(new Event('submit'));
     expect(createUser).toBeCalled();
   });
+
+  it('Comprueba ', (done) => {
+    const view = register();
+    const buttonCreate = view.querySelector('#register__form-id');
+    createUser.mockImplementation((email) => {
+      if (email === 'ana@gm') {
+        return Promise.reject({ code: 'auth/invalid-email' });
+      }
+    });
+
+    view.querySelector('#register__email').value = 'ana@gm';
+    buttonCreate.submit();
+    setTimeout(() => {
+      expect(view.querySelector('#register__invalid-email').style.display).toBe('block');
+      done();
+    }, 1000);
+  });
 });
