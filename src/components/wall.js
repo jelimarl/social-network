@@ -62,7 +62,7 @@ export const wall = () => {
   const logOutButtonIcon = sectionWall.querySelector('.wall__logout-icon');
   const logOutButtonText = sectionWall.querySelector('.wall__logout-text');
   let editStatus = false;
-  const docID = '';
+  let docID = '';
 
   // eslint-disable-next-line padded-blocks
   window.addEventListener('DOMContentLoaded', () => {
@@ -185,7 +185,7 @@ export const wall = () => {
         // Edit post
         editButton.forEach((button) => {
           button.addEventListener('click', (event) => {
-            const docID  = event.target.dataset.id;
+            docID = event.target.dataset.id;
             editStatus = true;
 
             modalAddPost.style.display = 'flex';
