@@ -5,7 +5,7 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js';
 import {
   // eslint-disable-next-line max-len
-  addDoc, collection, getFirestore, onSnapshot, query, orderBy, deleteDoc, doc, updateDoc, getDoc,
+  addDoc, collection, getFirestore, onSnapshot, query, orderBy, deleteDoc, doc, updateDoc, getDoc, arrayUnion, arrayRemove,
 } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-firestore.js';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.4/firebase-app.js';
 import { firebaseConfig } from './configFirebase.js';
@@ -43,7 +43,7 @@ export const getCurrentUser = () => {
 export const logOut = () => signOut(auth);
 
 // Save data
-export const savePost = (contentPost, date, counterLikes) => {
+export const savePost = (contentPost, date, counterLikes, usersLikes) => {
   if (currentUser) {
     const name = currentUser.displayName;
     const email = currentUser.email;
@@ -51,7 +51,7 @@ export const savePost = (contentPost, date, counterLikes) => {
     const photo = currentUser.photoURL;
 
     addDoc(collection(firestoreConnection, 'Posts'), {
-      contentPost, name, email, uid, photo, date, counterLikes,
+      contentPost, name, email, uid, photo, date, counterLikes, usersLikes,
     });
   }
 };
@@ -75,4 +75,7 @@ export const deletePost = (id) => deleteDoc(doc(firestoreConnection, 'Posts', id
 export const editPost = (id, newContentPost) => updateDoc(doc(firestoreConnection, 'Posts', id), newContentPost);
 
 // Like post
-export const likePost = (id, counterLikes) => updateDoc(doc(firestoreConnection, 'Posts', id), counterLikes);
+export const likePost = (id, likes, userLike) => updateDoc(doc(firestoreConnection, 'Posts', id), { counterLikes: likes, usersLikes: arrayUnion(userLike) });
+
+// Dislike post
+export const dislikePost = (id, likes, userLike) => updateDoc(doc(firestoreConnection, 'Posts', id), { counterLikes: likes, usersLikes: arrayRemove(userLike) });

@@ -1,7 +1,8 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-restricted-globals */
 import {
-  savePost, onGetPost, getCurrentUser, currentUser, deletePost, getPost, editPost, logOut, likePost,
+  // eslint-disable-next-line max-len
+  savePost, onGetPost, getCurrentUser, currentUser, deletePost, getPost, editPost, logOut, likePost, dislikePost
 } from '../lib/firebaseServices.js';
 
 export const wall = () => {
@@ -159,12 +160,18 @@ export const wall = () => {
         // // Like
         likeButton.forEach((like) => {
           like.addEventListener('click', (event) => {
+            const currentUserLike = currentUser.uid;
             const idLikeButton = event.target.dataset.id;
             getPost(idLikeButton)
               .then((document) => {
                 const post = document.data();
-                const likes = (post.counterLikes) + 1;
-                likePost(idLikeButton, { counterLikes: likes });
+                if (!post.usersLikes.includes(currentUserLike)) {
+                  const likes = (post.counterLikes) + 1;
+                  likePost(idLikeButton, likes, currentUserLike);
+                } else {
+                  const likes = (post.counterLikes) - 1;
+                  dislikePost(idLikeButton, likes, currentUserLike);
+                }
               })
               .catch((error) => {
                 console.log(error);
@@ -268,7 +275,7 @@ export const wall = () => {
     } else {
       if (!editStatus) {
         const date = Date.now();
-        savePost(textAreaPost.value, date, 0);
+        savePost(textAreaPost.value, date, 0, []);
       } else {
         editPost(docID, { contentPost: textAreaPost.value });
         editStatus = false;
