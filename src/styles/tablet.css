@@ -125,7 +125,7 @@
 
 .post__user-photo{
     width: 5.5rem;
-    border-radius: 50%; 
+    border-radius: 50%;
  }
  
  .post__username {
@@ -137,7 +137,9 @@
      margin: 0 0.5rem 1rem 0.5rem;
      font-size: 2.5rem;
  }
-
+ .post__like-counter {
+    font-size: 2.2rem;
+}
  .post__like-button {
     font-size: 4rem;
  }

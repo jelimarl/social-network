@@ -323,6 +323,12 @@ html {
     align-items: center;
 }
 
+.post__like-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .post__like-button {
     border: none;
     font-size: 3rem;
@@ -331,6 +337,12 @@ html {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     cursor: pointer;
+}
+
+.post__like-counter {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-left: 0.6rem;
 }
 
 .like-button-empty {

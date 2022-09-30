@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-restricted-globals */
 import {
-  savePost, onGetPost, getCurrentUser, currentUser, deletePost, getPost, editPost, logOut,
+  savePost, onGetPost, getCurrentUser, currentUser, deletePost, getPost, editPost, logOut, likePost,
 } from '../lib/firebaseServices.js';
 
 export const wall = () => {
@@ -87,8 +87,8 @@ export const wall = () => {
         <p class="post__message">${doc.data().contentPost}</p>
         <div class="post__buttons">
         <div class="post__like-container">
-          <button class="post__like-button"><i class="like-button-empty fa-regular fa-heart"></i><i class="like-button-solid fa-solid fa-heart"></i></button>
-          <p class="post__like-counter"></p>
+          <button class="post__like-button"><i class="like-button-empty fa-regular fa-heart" data-id='${doc.id}'></i><i class="like-button-solid fa-solid fa-heart" data-id='${doc.id}'></i></button>
+          <p class="post__like-counter">${doc.data().counterLikes}</p>
         </div>
         <div class="post__edit-delete-container">
           <button class="post__edit-button edit-delete-button-desktop"><i class="fa-regular fa-pen-to-square" data-id='${doc.id}'></i>
@@ -153,7 +153,49 @@ export const wall = () => {
 
         const deleteButton = wallInputs.querySelectorAll('.post__delete-button');
         const editButton = wallInputs.querySelectorAll('.post__edit-button');
+        const likeButton = wallInputs.querySelectorAll('.like-button-empty');
+        const unlikeButton = wallInputs.querySelectorAll('.like-button-solid');
 
+        // // Like
+        likeButton.forEach((like) => {
+          like.addEventListener('click', (event) => {
+            const idLikeButton = event.target.dataset.id;
+            getPost(idLikeButton)
+              .then((document) => {
+                const post = document.data();
+                const likes = (post.counterLikes) + 1;
+                likePost(idLikeButton, { counterLikes: likes });
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+            // Intento con for each
+            // unlikeButton.forEach((unlike) => {
+            //   if (unlike.dataset.id === idLikeButton) {
+            //     like.style.display = 'none';
+            //     unlike.style.display = 'block';
+            //     console.log('Hola');
+            //   }
+
+            // Intento con for
+            // for (let i = 0; i < likeButton.length; i++) {
+            //   const unlike = unlikeButton[i];
+            //   if (unlike.dataset.id === idLikeButton) {
+            //     like.style.display = 'none';
+            //     unlike.style.display = 'block';
+            //     break;
+            //   }
+          });
+        });
+        // if (like.style.display !== 'none') {
+        //   like.style.display = 'none';
+        // } else {
+        //   console.log('Adiós');
+        // }
+        // like.style.display = 'none';
+        // unlikeButton.style.display = 'block';
+        // });
+        // });
         // Delete post
         deleteButton.forEach((button) => {
           button.addEventListener('click', (event) => {
@@ -226,7 +268,7 @@ export const wall = () => {
     } else {
       if (!editStatus) {
         const date = Date.now();
-        savePost(textAreaPost.value, date);
+        savePost(textAreaPost.value, date, 0);
       } else {
         editPost(docID, { contentPost: textAreaPost.value });
         editStatus = false;
@@ -241,7 +283,6 @@ export const wall = () => {
     if (confirm('Are you sure you want to leave?')) {
       logOut()
         .then(() => {
-          // console.log('Hola');
           window.location.hash = '';
         })
         .catch((error) => {
@@ -254,7 +295,6 @@ export const wall = () => {
     if (confirm('Are you sure you want to leave?')) {
       logOut()
         .then(() => {
-          // console.log('Hola');
           window.location.hash = '';
         })
         .catch((error) => {

@@ -43,7 +43,7 @@ export const getCurrentUser = () => {
 export const logOut = () => signOut(auth);
 
 // Save data
-export const savePost = (contentPost, date) => {
+export const savePost = (contentPost, date, counterLikes) => {
   if (currentUser) {
     const name = currentUser.displayName;
     const email = currentUser.email;
@@ -51,7 +51,7 @@ export const savePost = (contentPost, date) => {
     const photo = currentUser.photoURL;
 
     addDoc(collection(firestoreConnection, 'Posts'), {
-      contentPost, name, email, uid, photo, date,
+      contentPost, name, email, uid, photo, date, counterLikes,
     });
   }
 };
@@ -74,3 +74,5 @@ export const deletePost = (id) => deleteDoc(doc(firestoreConnection, 'Posts', id
 // Edit post
 export const editPost = (id, newContentPost) => updateDoc(doc(firestoreConnection, 'Posts', id), newContentPost);
 
+// Like post
+export const likePost = (id, counterLikes) => updateDoc(doc(firestoreConnection, 'Posts', id), counterLikes);
