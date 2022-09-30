@@ -120,12 +120,6 @@ export const wall = () => {
             <button class="post__like-button"><i class="like-button-empty fa-regular fa-heart" data-id='${doc.id}'></i><i class="like-button-solid fa-solid fa-heart" data-id='${doc.id}'></i></button>
             <p class="post__like-counter">${doc.data().counterLikes}</p>
           </div>
-          <div class="post__edit-delete-container">
-            <button class="post__edit-button edit-delete-button-desktop"><i class="fa-regular fa-pen-to-square" data-id='${doc.id}'></i>
-            </button>
-            <button class="post__delete-button edit-delete-button-desktop"><i class="fa-regular fa-trash-can" data-id='${doc.id}'></i>
-            </button>
-          </div>
           </div>
           </article>
           `;
@@ -188,6 +182,42 @@ export const wall = () => {
         // console.log(editButton);
         const likeButton = wallInputs.querySelectorAll('.like-button-empty');
 
+        // Edit post
+        editButton.forEach((button) => {
+          button.addEventListener('click', (event) => {
+            const docID  = event.target.dataset.id;
+            editStatus = true;
+
+            modalAddPost.style.display = 'flex';
+            postButton.innerText = 'Update';
+            wallInputs.style.display = 'none';
+
+            getPost(docID)
+              .then((document) => {
+                const post = document.data();
+
+                userInfoAddPostModal.innerHTML = `
+                    <object class='wall__modal-profile-picture' data="https://imagizer.imageshack.com/img923/9210/UFd2QW.png" type="image/png">
+                    <img class="wall__modal-profile-picture" src="${post.photo}" alt="Profile Picture">
+                    </object>
+                    <h2 class="wall__modal-user-name">${post.name}</h2>
+                    `;
+
+                textAreaPost.value = `${post.contentPost}`;
+              });
+          });
+        });
+
+        // Delete post
+        deleteButton.forEach((button) => {
+          button.addEventListener('click', (event) => {
+            const dataID = event.target.dataset.id;
+            if (confirm('Do you want to delete the post?')) {
+              deletePost(dataID);
+            }
+          });
+        });
+
         // Like
         likeButton.forEach((like) => {
           like.addEventListener('click', (event) => {
@@ -207,42 +237,6 @@ export const wall = () => {
               .catch((error) => {
                 console.log(error);
               });
-
-            // Delete post
-            deleteButton.forEach((button) => {
-              button.addEventListener('click', (e) => {
-                const dataID = e.target.dataset.id;
-                if (confirm('Do you want to delete the post?')) {
-                  deletePost(dataID);
-                }
-              });
-            });
-
-            // Edit post
-            editButton.forEach((button) => {
-              button.addEventListener('click', (ev) => {
-                docID = ev.target.dataset.id;
-                editStatus = true;
-
-                modalAddPost.style.display = 'flex';
-                postButton.innerText = 'Update';
-                wallInputs.style.display = 'none';
-
-                getPost(docID)
-                  .then((document) => {
-                    const post = document.data();
-
-                    userInfoAddPostModal.innerHTML = `
-                <object class='wall__modal-profile-picture' data="https://imagizer.imageshack.com/img923/9210/UFd2QW.png" type="image/png">
-                <img class="wall__modal-profile-picture" src="${post.photo}" alt="Profile Picture">
-                </object>
-                <h2 class="wall__modal-user-name">${post.name}</h2>
-                `;
-
-                    textAreaPost.value = `${post.contentPost}`;
-                  });
-              });
-            });
 
             // close modals
             window.onclick = (event) => {
