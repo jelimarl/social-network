@@ -3,7 +3,7 @@
 /* eslint-disable no-restricted-globals */
 import {
   // eslint-disable-next-line max-len
-  savePost, onGetPost, getCurrentUser, currentUser, deletePost, getPost, editPost, logOut, likePost, dislikePost,
+  savePost, onGetPost, currentUser, deletePost, getPost, editPost, logOut, likePost, dislikePost,
 } from '../lib/firebaseServices.js';
 
 export const wall = () => {
@@ -66,8 +66,7 @@ export const wall = () => {
   let docID = '';
 
   // eslint-disable-next-line padded-blocks
-  window.addEventListener('DOMContentLoaded', () => {
-    getCurrentUser();
+  window.addEventListener('hashchange', () => {
     onGetPost((querySnapshot) => {
       wallInputs.innerHTML = '';
 
@@ -75,7 +74,6 @@ export const wall = () => {
       querySnapshot.forEach((doc) => {
         const linkPhoto = 'https://imagizer.imageshack.com/img923/9210/UFd2QW.png';
         const photo = doc.data().photo ? doc.data().photo : linkPhoto;
-
         if (doc.data().uid === currentUser.uid) {
           wallInputs.innerHTML += `
           <article class="post">
@@ -239,6 +237,7 @@ export const wall = () => {
       logOut()
         .then(() => {
           window.location.hash = '';
+          location.reload();
         })
         .catch(() => {
         });
@@ -250,6 +249,7 @@ export const wall = () => {
       logOut()
         .then(() => {
           window.location.hash = '';
+          location.reload();
         })
         .catch(() => {
         });

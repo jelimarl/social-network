@@ -85,7 +85,6 @@ export const register = () => {
     googleSignIn()
       .then(() => {
         window.location.hash = '#wall';
-        getCurrentUser();
       })
       .catch(() => {
       });
