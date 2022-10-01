@@ -1,5 +1,5 @@
 import { register } from '../../src/components/register.js';
-import { googleSignIn, createUser } from '../../src/lib/firebaseServices.js';
+import { googleSignIn, createUser, saveDisplayName } from '../../src/lib/firebaseServices.js';
 
 jest.mock('../../src/lib/firebaseServices.js');
 
@@ -7,22 +7,31 @@ describe('register', () => {
   it('Comprueba que funciona el evento click de Google', () => {
     const view = register();
     const googleButton = view.querySelector('.register__button-google');
-    googleButton.dispatchEvent(new Event('click'));
+    googleButton.click();
     expect(googleSignIn).toBeCalled();
   });
 
   it('Comprueba que funciona el evento submit de crear cuenta', () => {
     const view = register();
     const buttonCreate = view.querySelector('#register__form-id');
-    buttonCreate.dispatchEvent(new Event('submit'));
+    buttonCreate.submit();
     expect(createUser).toBeCalled();
   });
 
-  it('Comprueba ', (done) => {
+  it('Comprueba que se cree el usuario correctamente', () => {
     const view = register();
     const buttonCreate = view.querySelector('#register__form-id');
+    buttonCreate.submit();
+    expect(saveDisplayName).toBeCalled();
+  });
+
+  it('Comprueba si el email ingresado es invalido', (done) => {
+    const view = register();
+    const buttonCreate = view.querySelector('#register__form-id');
+    // eslint-disable-next-line consistent-return
     createUser.mockImplementation((email) => {
       if (email === 'ana@gm') {
+        // eslint-disable-next-line prefer-promise-reject-errors
         return Promise.reject({ code: 'auth/invalid-email' });
       }
     });
