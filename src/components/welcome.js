@@ -1,4 +1,4 @@
-import { googleSignIn, getCurrentUser } from '../lib/firebaseServices.js';
+import { googleSignIn } from '../lib/firebaseServices.js';
 
 export const welcome = () => {
   const sectionWelcome = document.createElement('section');
@@ -30,7 +30,6 @@ export const welcome = () => {
     googleSignIn()
       .then(() => {
         window.location.hash = '#wall';
-        getCurrentUser();
       })
       .catch(() => {
       });

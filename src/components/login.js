@@ -1,5 +1,5 @@
 import {
-  loginUser, googleSignIn, getCurrentUser,
+  loginUser, googleSignIn,
 } from '../lib/firebaseServices.js';
 
 export const login = () => {
@@ -42,7 +42,6 @@ export const login = () => {
     loginUser(loginEmail.value, loginPassword.value)
       .then(() => {
         window.location.hash = '#wall';
-        getCurrentUser();
         loginForm.reset();
         loginErrorEmailNotFound.style.display = 'none';
         loginErrorWrongPassword.style.display = 'none';
@@ -70,7 +69,6 @@ export const login = () => {
     googleSignIn()
       .then(() => {
         window.location.hash = '#wall';
-        getCurrentUser();
       })
       .catch(() => {
       });
