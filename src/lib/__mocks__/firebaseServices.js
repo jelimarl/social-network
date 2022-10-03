@@ -8,3 +8,5 @@ export const googleSignIn = jest.fn(() => Promise.resolve());
 export const getCurrentUser = jest.fn(() => Promise.resolve());
 
 export const onGetPost = jest.fn(() => Promise.resolve());
+
+export const logOut = jest.fn(() => Promise.resolve());
