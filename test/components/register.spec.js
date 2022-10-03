@@ -50,15 +50,15 @@ describe('register', () => {
     const buttonCreate = view.querySelector('#register__form-id');
     createUser.mockImplementation((email) => {
       if (email === 'emailalreadyregistered@gmail.com') {
-        return Promise.reject({code: 'auth/email-already-in-use'});
+        return Promise.reject({ code: 'auth/email-already-in-use' });
       }
-
-      view.querySelector('#register__email').value = 'emailalreadyregistered@gmail.com';
-      buttonCreate.submit();
-      setTimeout(() => {
-        expect(view.querySelector('#register__already-in-use-email').style.display).toBe('block');
-        done();
-      }, 1000);
     });
+
+    view.querySelector('#register__email').value = 'emailalreadyregistered@gmail.com';
+    buttonCreate.submit();
+    setTimeout(() => {
+      expect(view.querySelector('#register__already-in-use-email').style.display).toBe('block');
+      done();
+    }, 1000);
   });
 });
