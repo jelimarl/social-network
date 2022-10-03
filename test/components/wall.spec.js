@@ -28,7 +28,6 @@ describe('welcome', () => {
     expect(wallInputs.querySelector('.post__username').textContent).toBe('Nunito');
   });
 
-  // Amappola
   it('Comprueba que el botón add post funcione', () => {
     const view = wall();
     const addPostButton = view.querySelector('.wall__button-add');
@@ -72,8 +71,8 @@ describe('welcome', () => {
     const postButton = view.querySelector('.wall__post-button');
     const textArea = view.querySelector('.wall__modal-add-text');
     textArea.value = 'hola';
-    console.log('edit::', editStatus);
-    // view.editStatus = true;
+    let editStatus;
+    editStatus = true;
     postButton.click();
     expect(savePost).not.toBeCalled();
     expect(editPost).toBeCalled();
@@ -98,4 +97,25 @@ describe('welcome', () => {
 
     expect(logOut).toBeCalled();
   });
+
+  it ('Comprueba que se cierra el modal addPost al dar click por fuera', () => {
+    const view = wall();
+    const modalContainer = view.querySelector('.wall__container-add-post-modal');
+    const wallInputs = view.querySelector('.wall__inputs');
+    Event.target = modalContainer;
+    window.onclick(Event);
+    
+    expect(wallInputs.style.display).toBe('flex');
+  })
+  
+  // Falla porque es una lista de nodos
+  it ('Comprueba que el botón de dar like funciona', () => {
+    const view = wall();
+    const wallInputs = view.querySelector('.wall__inputs');
+    const likeButton = wallInputs.querySelectorAll('.like-button-empty');
+    console.log(likeButton);
+    likeButton[1].click();
+
+    expect(getPost).toBeCalled();
+  })
 });
