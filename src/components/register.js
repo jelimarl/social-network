@@ -74,6 +74,8 @@ export const register = () => {
             registerErrorInUse.style.display = 'none';
             break;
           default:
+            registerErrorInvalid.style.display = 'none';
+            registerErrorInUse.style.display = 'none';
             break;
         }
       });

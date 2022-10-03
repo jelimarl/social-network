@@ -6,36 +6,27 @@ import {
 jest.mock('../../src/lib/firebaseServices.js');
 
 describe('welcome', () => {
-  it('Comprueba que funciona el evento click de Google2', () => {
+  it('Check onGetPost is called', () => {
     wall();
     window.dispatchEvent(new Event('hashchange'));
     expect(onGetPost).toBeCalled();
   });
 
-  // Amappola
-  // it ('', () => {
-  //   const view = wall();
-  //   const likeButton = view.querySelector('.like-button-empty');
-  //   window.dispatchEvent(new Event('hashchange'));
-  //   likeButton.dispatchEvent(new Event('click'));
-  //   expect(getPost).toBeCalled();
-  // });
-
-  it('Comprueba getPost', () => {
+  it('Check the posts are correctly Laid out', () => {
     const view = wall();
     const wallInputs = view.querySelector('.wall__inputs');
     window.dispatchEvent(new Event('hashchange'));
     expect(wallInputs.querySelector('.post__username').textContent).toBe('Nunito');
   });
 
-  it('Comprueba que el botón add post funcione', () => {
+  it('Check the add post button opens the add post modal', () => {
     const view = wall();
     const addPostButton = view.querySelector('.wall__button-add');
     addPostButton.dispatchEvent(new Event('click'));
     expect(view.querySelector('.wall__modal-add-text').value).toBe('');
   });
 
-  it('Comprueba que al darle a la x del modal de postear se cierre', () => {
+  it('Checks the exit modal button closes the add post modal', () => {
     const view = wall();
     const modal = view.querySelector('.wall__container-add-post-modal');
     const closeModal = view.querySelector('.wall__modal-exit-button');
@@ -43,19 +34,17 @@ describe('welcome', () => {
     expect(modal.style.display).toBe('none');
   });
 
-  it('Comprueba que al dar click al boton de post el text area esta vacio', () => {
-    // jest.spyOn(window, 'alert').mockImplementation(() => {});
+  it('Check the text area is empty when the post button is clicked', () => {
     window.alert = jest.fn();
     const view = wall();
     const postButton = view.querySelector('.wall__post-button');
     const textArea = view.querySelector('.wall__modal-add-text');
     textArea.value = '';
     postButton.click();
-
     expect(window.alert).toBeCalled();
   });
 
-  it('Comprueba que al dar click al boton de post el text area tenga contenido y edit status sea false', () => {
+  it('Check the text area has content and edit status is false when the post button is clicked', () => {
     const view = wall();
     const postButton = view.querySelector('.wall__post-button');
     const textArea = view.querySelector('.wall__modal-add-text');
@@ -66,7 +55,7 @@ describe('welcome', () => {
   });
 
   // A este caso no se ha podido acceder, ya que depende de que editStatus sea true
-  it('Comprueba que al dar click al boton de post el text area tenga contenido y edit status sea true', () => {
+  it('Check the text area has content and edit status is true when the post button is clicked', () => {
     const view = wall();
     const postButton = view.querySelector('.wall__post-button');
     const textArea = view.querySelector('.wall__modal-add-text');
@@ -78,7 +67,7 @@ describe('welcome', () => {
     expect(editPost).toBeCalled();
   });
 
-  it('Comprueba que funciona el evento click de Log out con ícono', () => {
+  it('Check logout icon button event works', () => {
     window.confirm = () => true; // provide an implementation for window.confirm
 
     const view = wall();
@@ -88,7 +77,7 @@ describe('welcome', () => {
     expect(logOut).toBeCalled();
   });
 
-  it('Comprueba que funciona el evento click de Log out con texto', () => {
+  it('Check logout text button event works', () => {
     window.confirm = () => true; // provide an implementation for window.confirm
 
     const view = wall();
@@ -98,18 +87,17 @@ describe('welcome', () => {
     expect(logOut).toBeCalled();
   });
 
-  it ('Comprueba que se cierra el modal addPost al dar click por fuera', () => {
+  it('Check modal add post is closed when window is clicked', () => {
     const view = wall();
     const modalContainer = view.querySelector('.wall__container-add-post-modal');
     const wallInputs = view.querySelector('.wall__inputs');
     Event.target = modalContainer;
     window.onclick(Event);
-    
     expect(wallInputs.style.display).toBe('flex');
-  })
-  
+  });
+
   // Falla porque es una lista de nodos
-  it ('Comprueba que el botón de dar like funciona', () => {
+  it('Check like button works', () => {
     const view = wall();
     const wallInputs = view.querySelector('.wall__inputs');
     const likeButton = wallInputs.querySelectorAll('.like-button-empty');
@@ -117,5 +105,5 @@ describe('welcome', () => {
     likeButton[1].click();
 
     expect(getPost).toBeCalled();
-  })
+  });
 });

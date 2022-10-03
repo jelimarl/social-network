@@ -3,29 +3,29 @@ import { googleSignIn, createUser, saveDisplayName } from '../../src/lib/firebas
 
 jest.mock('../../src/lib/firebaseServices.js');
 
-describe('register', () => {
-  it('Comprueba que funciona el evento click de Google', () => {
+describe('Register', () => {
+  it('Check Google event works', () => {
     const view = register();
     const googleButton = view.querySelector('.register__button-google');
     googleButton.click();
     expect(googleSignIn).toBeCalled();
   });
 
-  it('Comprueba que funciona el evento submit de crear cuenta', () => {
+  it('Check submit event works', () => {
     const view = register();
     const buttonCreate = view.querySelector('#register__form-id');
     buttonCreate.submit();
     expect(createUser).toBeCalled();
   });
 
-  it('Comprueba que se cree el usuario correctamente', () => {
+  it('Check user is created', () => {
     const view = register();
     const buttonCreate = view.querySelector('#register__form-id');
     buttonCreate.submit();
     expect(saveDisplayName).toBeCalled();
   });
 
-  it('Comprueba si el email ingresado es invalido', (done) => {
+  it('Check create account throws invalid email error', (done) => {
     const view = register();
     const buttonCreate = view.querySelector('#register__form-id');
     // eslint-disable-next-line consistent-return
@@ -44,8 +44,7 @@ describe('register', () => {
     }, 1000);
   });
 
-  // Amappola
-  it('Comprueba que el error de email already in use se muestre', (done) => {
+  it('Check create account throws email already in use error', (done) => {
     const view = register();
     const buttonCreate = view.querySelector('#register__form-id');
     createUser.mockImplementation((email) => {
@@ -58,6 +57,23 @@ describe('register', () => {
     buttonCreate.submit();
     setTimeout(() => {
       expect(view.querySelector('#register__already-in-use-email').style.display).toBe('block');
+      done();
+    }, 1000);
+  });
+
+  it('Check create account throws  error', (done) => {
+    const view = register();
+    const buttonCreate = view.querySelector('#register__form-id');
+    createUser.mockImplementation((email) => {
+      if (email === 'emailalreadyregistered@gmail.com') {
+        return Promise.reject({ code: 'auth/xxxxx' });
+      }
+    });
+
+    view.querySelector('#register__email').value = 'emailalreadyregistered@gmail.com';
+    buttonCreate.submit();
+    setTimeout(() => {
+      expect(view.querySelector('#register__already-in-use-email').style.display).toBe('none');
       done();
     }, 1000);
   });

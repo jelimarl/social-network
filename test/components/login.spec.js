@@ -4,21 +4,21 @@ import { googleSignIn, loginUser } from '../../src/lib/firebaseServices.js';
 jest.mock('../../src/lib/firebaseServices.js');
 
 describe('login', () => {
-  it('Comprueba que funciona el evento click de Google', () => {
+  it('Check Google event works', () => {
     const view = login();
     const googleButton = view.querySelector('.register__button-google');
     googleButton.dispatchEvent(new Event('click'));
     expect(googleSignIn).toBeCalled();
   });
 
-  it('Comprueba que funciona el evento submit de Loguearse', () => {
+  it('Check submit event works', () => {
     const view = login();
     const buttonLogin = view.querySelector('#login__form-id');
     buttonLogin.dispatchEvent(new Event('submit'));
     expect(loginUser).toBeCalled();
   });
 
-  it('El log in falla', () => {
+  it('Check Log In fails', () => {
     const view = login();
     const buttonLogin = view.querySelector('#login__form-id');
     loginUser.mockRejectedValueOnce('auth/user-not-found');
@@ -26,7 +26,7 @@ describe('login', () => {
     expect(loginUser).toBeCalled();
   });
 
-  it('Entra al 1er catch', (done) => {
+  it('Check Log In throws user not found error', (done) => {
     const view = login();
     const buttonLogin = view.querySelector('#login__form-id');
 
@@ -44,7 +44,7 @@ describe('login', () => {
     }, 1000);
   });
 
-  it('Entra al 2do catch', (done) => {
+  it('Check Log In throws wrong password error', (done) => {
     const view = login();
     const buttonLogin = view.querySelector('#login__form-id');
 
