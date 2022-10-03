@@ -1,7 +1,6 @@
-// eslint-disable-next-line no-unused-vars
-export const loginUser = jest.fn((email, password) => Promise.resolve());
-// eslint-disable-next-line no-unused-vars
-export const createUser = jest.fn((email, password) => Promise.resolve());
+export const loginUser = jest.fn(() => Promise.resolve());
+
+export const createUser = jest.fn(() => Promise.resolve());
 
 export const googleSignIn = jest.fn(() => Promise.resolve());
 
@@ -10,6 +9,14 @@ export const getCurrentUser = jest.fn(() => Promise.resolve());
 export const onGetPost = jest.fn(() => Promise.resolve());
 
 export const getPost = jest.fn(() => Promise.resolve());
+
+export const saveDisplayName = jest.fn(() => Promise.resolve());
+
+export const savePost = jest.fn(() => Promise.resolve());
+
+export const editPost = jest.fn(() => Promise.resolve());
+
+export const logOut = jest.fn(() => Promise.resolve());
 
 export const currentUser = {
   displayName: 'Milo',
