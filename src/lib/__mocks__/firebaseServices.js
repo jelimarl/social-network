@@ -13,3 +13,5 @@ export const saveDisplayName = jest.fn(() => Promise.resolve());
 export const savePost = jest.fn(() => Promise.resolve());
 
 export const editPost = jest.fn(() => Promise.resolve());
+
+export const logOut = jest.fn(() => Promise.resolve());

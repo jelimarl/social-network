@@ -1,5 +1,7 @@
 import { wall } from '../../src/components/wall.js';
-import { editPost, onGetPost, savePost } from '../../src/lib/firebaseServices.js';
+import {
+  editPost, onGetPost, savePost, logOut,
+} from '../../src/lib/firebaseServices.js';
 
 jest.mock('../../src/lib/firebaseServices.js');
 
@@ -40,6 +42,7 @@ describe('welcome', () => {
     expect(editPost).not.toBeCalled();
   });
 
+  // A este caso no se ha podido acceder, ya que depende de que editStatus sea true
   it('Comprueba que al dar click al boton de post el text area tenga contenido y edit status sea true', () => {
     const view = wall();
     const postButton = view.querySelector('.wall__post-button');
@@ -48,5 +51,25 @@ describe('welcome', () => {
     postButton.click();
     expect(savePost).not.toBeCalled();
     expect(editPost).toBeCalled();
+  });
+
+  it('Comprueba que funciona el evento click de Log out con ícono', () => {
+    window.confirm = () => true; // provide an implementation for window.confirm
+
+    const view = wall();
+    const iconLogOut = view.querySelector('.wall__logout-icon');
+    iconLogOut.click();
+
+    expect(logOut).toBeCalled();
+  });
+
+  it('Comprueba que funciona el evento click de Log out con texto', () => {
+    window.confirm = () => true; // provide an implementation for window.confirm
+
+    const view = wall();
+    const textLogOut = view.querySelector('.wall__logout-text');
+    textLogOut.click();
+
+    expect(logOut).toBeCalled();
   });
 });
