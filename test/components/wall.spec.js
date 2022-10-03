@@ -72,6 +72,8 @@ describe('welcome', () => {
     const postButton = view.querySelector('.wall__post-button');
     const textArea = view.querySelector('.wall__modal-add-text');
     textArea.value = 'hola';
+    console.log('edit::', editStatus);
+    // view.editStatus = true;
     postButton.click();
     expect(savePost).not.toBeCalled();
     expect(editPost).toBeCalled();

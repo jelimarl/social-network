@@ -183,14 +183,6 @@ export const wall = () => {
             })
             .catch(() => {
             });
-
-          // close modals
-          window.onclick = (event) => {
-            if (event.target === modalAddPost) {
-              modalAddPost.style.display = 'none';
-              wallInputs.style.display = 'flex';
-            }
-          };
         });
       });
     });
@@ -221,6 +213,14 @@ export const wall = () => {
     modalAddPost.style.display = 'none';
     wallInputs.style.display = 'flex';
   });
+
+  // close modals
+  window.onclick = (event) => {
+    if (event.target === modalAddPost) {
+      modalAddPost.style.display = 'none';
+      wallInputs.style.display = 'flex';
+    }
+  };
 
   postButton.addEventListener('click', () => {
     if (textAreaPost.value === '') {
