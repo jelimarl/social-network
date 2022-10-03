@@ -6,7 +6,14 @@ export const googleSignIn = jest.fn(() => Promise.resolve());
 
 export const getCurrentUser = jest.fn(() => Promise.resolve());
 
-export const onGetPost = jest.fn(() => Promise.resolve());
+export const onGetPost = jest.fn((callback) => {
+  callback([{
+    id: '123erf',
+    data: () => ({
+      name: 'Nunito', uid: '123esd', email: 'nunito@gmail.com', photo: 'urlphoto', contentPost: 'Hola', counterLikes: 0, date: 1243563, usersLikes: [],
+    }),
+  }]);
+});
 
 export const getPost = jest.fn(() => Promise.resolve());
 

@@ -123,7 +123,7 @@ export const wall = () => {
 
   const showPosts = (querySnapshot) => {
     querySnapshot.forEach((doc) => {
-      showOnePost(doc);
+      showOnePost(doc, wallInputs, currentUser);
 
       const deleteButton = wallInputs.querySelectorAll('.post__delete-button');
       const editButton = wallInputs.querySelectorAll('.post__edit-button');

@@ -1,4 +1,4 @@
-import { wall } from '../../src/components/wall.js';
+import { wall, showOnePost } from '../../src/components/wall.js';
 import {
   editPost, onGetPost, savePost, logOut, getCurrentUser, getPost,
 } from '../../src/lib/firebaseServices.js';
@@ -20,6 +20,13 @@ describe('welcome', () => {
   //   likeButton.dispatchEvent(new Event('click'));
   //   expect(getPost).toBeCalled();
   // });
+
+  it('Comprueba getPost', () => {
+    const view = wall();
+    const wallInputs = view.querySelector('.wall__inputs');
+    window.dispatchEvent(new Event('hashchange'));
+    expect(wallInputs.querySelector('.post__username').textContent).toBe('Nunito');
+  });
 
   // Amappola
   it('Comprueba que el botón add post funcione', () => {
