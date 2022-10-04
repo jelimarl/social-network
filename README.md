@@ -13,13 +13,9 @@
 SysTEM es una red social para aficionados a las áreas STEM (ciencia, tecnología, ingeniería y matemáticas); donde los usuarios podrán ver y dar like a posts de otros usuarios, y crear, editar y borrar los suyos propios.
 
 ## **2. Definición de usuarios**
-### Principales Usuarios:
-Rango de edad: 14 a 50 años
-Ocupación: Estudiantes, profesionales, aficionados a STEM.
+Los usuarios de SysTEM son personas de entre 14 y 50 años, aficionados al mundo STEM; estudiantes, profesionales, amateurs...
 
-### Uso que le darán los usuarios:
-Conectar a las personas atraídas por el campo STEM.
-Compartir contenido relacionado con STEM (memes, infografías, recursos).
+El objetivo de esta red social es la de conectar a las personas interesadas en este campo y permitirles compartir contenido (memes, infografías, recursos) para que puedan así seguir disfrutando de aquello que les apasiona con personas con gustos similares.
 
 ## **3. Historias de usuario**
 ## **4. Prototipos**
