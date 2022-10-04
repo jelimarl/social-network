@@ -22,7 +22,7 @@ El objetivo de esta red social es la de conectar a las personas interesadas en e
 
 ## **3. Historias de usuario**
 
-#### Historia de Usuario 1 
+#### Historia de Usuario 1
 🔴 Yo como usuario quiero crear una cuenta para poder loguearme.
 #### Historia de Usuario 2
 🔵 Yo como usuario quiero loguearme para ingresar a la aplicación.
