@@ -285,19 +285,6 @@
     width: 100%;
 }
 
-.wall__add-image-button {
-    background-color: transparent;
-    border: none;
-    font-family: var(--font-family);
-    font-size: 1.4rem;
-    color: white;
-}
-
-.wall__add-image-button i {
-    font-size: 2rem;
-    margin-right: 0.5rem;
-}
-
 .wall__post-button {
     padding: 0.5rem 1.2rem;
     border-radius: 3rem;

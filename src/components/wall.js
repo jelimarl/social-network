@@ -21,20 +21,7 @@ export const wall = () => {
     <i class="wall__logout-icon fa-solid fa-person-walking-arrow-right"></i>
   </div>
 </header>
-<section class="wall__inputs">
-</section>
-<div class="post__container-edit-delete-modal">
-<section class="post__edit-delete-modal">
-  <div class='edit__button'>
-    <button class="post__edit-button  edit-delete-button-mobile"><div><i class="fa-solid fa-pencil"></i></div></button>
-    <p class="post__edit-delete-text">Edit</p>
-  </div>
-  <div class='delete__button'>
-    <button class="post__delete-button edit-delete-button-mobile"><div><i class="fa-solid fa-trash"></i></div></button>
-    <p class="post__edit-delete-text">Delete</p>
-  </div>
-</section>
-</div>
+<section class="wall__inputs"></section>
 <div class="wall__container-add-post-modal">
   <section class="wall__add-post-modal">
     <div class="wall__modal-info-user">
@@ -79,12 +66,11 @@ export const wall = () => {
           </object>
           <h2 class="post__username">${doc.data().name}</h2>
         </div>
-        <i class="post__edit-delete-button fa-solid fa-ellipsis"></i>
       </div>
       <p class="post__message">${doc.data().contentPost}</p>
       <div class="post__buttons">
       <div class="post__like-container">
-        <button class="post__like-button"><i class="like-button-empty fa-regular fa-heart" data-id='${doc.id}'></i><i class="like-button-solid fa-solid fa-heart" data-id='${doc.id}'></i></button>
+        <button class="post__like-button"><i class="like-button-empty fa-solid fa-heart" data-id='${doc.id}'></i></button>
         <p class="post__like-counter">${doc.data().counterLikes}</p>
       </div>
       <div class="post__edit-delete-container">
@@ -106,12 +92,11 @@ export const wall = () => {
           </object>
           <h2 class="post__username">${doc.data().name}</h2>
         </div>
-        <i class="post__edit-delete-button fa-solid fa-ellipsis"></i>
       </div>
       <p class="post__message">${doc.data().contentPost}</p>
       <div class="post__buttons">
       <div class="post__like-container">
-        <button class="post__like-button"><i class="like-button-empty fa-regular fa-heart" data-id='${doc.id}'></i><i class="like-button-solid fa-solid fa-heart" data-id='${doc.id}'></i></button>
+        <button class="post__like-button"><i class="like-button-empty fa-solid fa-heart" data-id='${doc.id}'></i></button>
         <p class="post__like-counter">${doc.data().counterLikes}</p>
       </div>
       </div>
@@ -189,6 +174,13 @@ export const wall = () => {
   };
 
   // eslint-disable-next-line padded-blocks
+  window.addEventListener('DOMContentLoaded', () => {
+    onGetPost((querySnapshot) => {
+      wallInputs.innerHTML = '';
+      showPosts(querySnapshot);
+    });
+  });
+
   window.addEventListener('hashchange', () => {
     onGetPost((querySnapshot) => {
       wallInputs.innerHTML = '';
