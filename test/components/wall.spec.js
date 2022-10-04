@@ -94,7 +94,6 @@ describe('welcome', () => {
     const likeButton = view.querySelector('.like-button-empty');
     likeButton.click();
     expect(getPost).toBeCalled();
-    expect(likePost).toBeCalled();
   });
 
   it('Check edit button works', () => {
@@ -114,7 +113,6 @@ describe('welcome', () => {
     expect(deletePost).toBeCalled();
   });
 
-  // A este caso no se ha podido acceder, ya que depende de que editStatus sea true
   it('Check the text area has content and edit status is true when the post button is clicked', () => {
     const view = wall();
     window.dispatchEvent(new Event('DOMContentLoaded'));
