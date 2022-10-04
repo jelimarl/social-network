@@ -20,5 +20,5 @@ export const showSection = () => {
   root.replaceChildren(template[hash]);
 };
 
-window.addEventListener('load', showSection);
+window.addEventListener('DOMContentLoaded', showSection);
 window.addEventListener('hashchange', showSection);

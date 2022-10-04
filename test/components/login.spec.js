@@ -1,3 +1,5 @@
+/* eslint-disable prefer-promise-reject-errors */
+/* eslint-disable consistent-return */
 import { login } from '../../src/components/login.js';
 import { googleSignIn, loginUser } from '../../src/lib/firebaseServices.js';
 

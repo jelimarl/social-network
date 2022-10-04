@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-shadow */
 /* eslint-disable no-alert */
 /* eslint-disable no-restricted-globals */
@@ -117,7 +118,6 @@ export const wall = () => {
       </article>
       `;
     }
-
     return wallInputs;
   };
 
@@ -196,6 +196,7 @@ export const wall = () => {
     });
   });
 
+  // open modal post
   addPostButton.addEventListener('click', () => {
     userInfoAddPostModal.innerHTML = `
     <object class='wall__modal-profile-picture' data="https://imagizer.imageshack.com/img923/9210/UFd2QW.png" type="image/png">
@@ -209,12 +210,12 @@ export const wall = () => {
     wallInputs.style.display = 'none';
   });
 
+  // close modals
   closeAddPostModal.addEventListener('click', () => {
     modalAddPost.style.display = 'none';
     wallInputs.style.display = 'flex';
   });
 
-  // close modals
   window.onclick = (event) => {
     if (event.target === modalAddPost) {
       modalAddPost.style.display = 'none';
@@ -222,6 +223,7 @@ export const wall = () => {
     }
   };
 
+  // save post or edit
   postButton.addEventListener('click', () => {
     if (textAreaPost.value === '') {
       // eslint-disable-next-line no-alert
@@ -240,6 +242,7 @@ export const wall = () => {
     }
   });
 
+  // log out
   logOutButtonIcon.addEventListener('click', () => {
     if (confirm('Are you sure you want to leave?')) {
       logOut()

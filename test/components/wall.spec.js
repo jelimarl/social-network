@@ -1,6 +1,6 @@
-import { wall, showOnePost } from '../../src/components/wall.js';
+import { wall } from '../../src/components/wall.js';
 import {
-  editPost, onGetPost, savePost, logOut, getCurrentUser, getPost,
+  editPost, onGetPost, savePost, logOut, getPost,
 } from '../../src/lib/firebaseServices.js';
 
 jest.mock('../../src/lib/firebaseServices.js');
@@ -60,8 +60,6 @@ describe('welcome', () => {
     const postButton = view.querySelector('.wall__post-button');
     const textArea = view.querySelector('.wall__modal-add-text');
     textArea.value = 'hola';
-    let editStatus;
-    editStatus = true;
     postButton.click();
     expect(savePost).not.toBeCalled();
     expect(editPost).toBeCalled();
@@ -101,7 +99,6 @@ describe('welcome', () => {
     const view = wall();
     const wallInputs = view.querySelector('.wall__inputs');
     const likeButton = wallInputs.querySelectorAll('.like-button-empty');
-    console.log(likeButton);
     likeButton[1].click();
 
     expect(getPost).toBeCalled();
