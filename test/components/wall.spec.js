@@ -1,6 +1,6 @@
 import { wall } from '../../src/components/wall.js';
 import {
-  editPost, onGetPost, savePost, logOut, getPost,
+  editPost, onGetPost, savePost, logOut, getPost, likePost, deletePost,
 } from '../../src/lib/firebaseServices.js';
 
 jest.mock('../../src/lib/firebaseServices.js');
@@ -9,6 +9,12 @@ describe('welcome', () => {
   it('Check onGetPost is called', () => {
     wall();
     window.dispatchEvent(new Event('hashchange'));
+    expect(onGetPost).toBeCalled();
+  });
+
+  it('Check onGetPost is called b', () => {
+    wall();
+    window.dispatchEvent(new Event('DOMContentLoaded'));
     expect(onGetPost).toBeCalled();
   });
 
@@ -54,19 +60,8 @@ describe('welcome', () => {
     expect(editPost).not.toBeCalled();
   });
 
-  // A este caso no se ha podido acceder, ya que depende de que editStatus sea true
-  it('Check the text area has content and edit status is true when the post button is clicked', () => {
-    const view = wall();
-    const postButton = view.querySelector('.wall__post-button');
-    const textArea = view.querySelector('.wall__modal-add-text');
-    textArea.value = 'hola';
-    postButton.click();
-    expect(savePost).not.toBeCalled();
-    expect(editPost).toBeCalled();
-  });
-
   it('Check logout icon button event works', () => {
-    window.confirm = () => true; // provide an implementation for window.confirm
+    window.confirm = () => true;
 
     const view = wall();
     const iconLogOut = view.querySelector('.wall__logout-icon');
@@ -76,8 +71,7 @@ describe('welcome', () => {
   });
 
   it('Check logout text button event works', () => {
-    window.confirm = () => true; // provide an implementation for window.confirm
-
+    window.confirm = () => true;
     const view = wall();
     const textLogOut = view.querySelector('.wall__logout-text');
     textLogOut.click();
@@ -94,13 +88,42 @@ describe('welcome', () => {
     expect(wallInputs.style.display).toBe('flex');
   });
 
-  // Falla porque es una lista de nodos
   it('Check like button works', () => {
     const view = wall();
-    const wallInputs = view.querySelector('.wall__inputs');
-    const likeButton = wallInputs.querySelectorAll('.like-button-empty');
-    likeButton[1].click();
-
+    window.dispatchEvent(new Event('DOMContentLoaded'));
+    const likeButton = view.querySelector('.like-button-empty');
+    likeButton.click();
     expect(getPost).toBeCalled();
+    expect(likePost).toBeCalled();
+  });
+
+  it('Check edit button works', () => {
+    const view = wall();
+    window.dispatchEvent(new Event('DOMContentLoaded'));
+    const editButton = view.querySelector('.post__edit-button');
+    editButton.click();
+    expect(getPost).toBeCalled();
+  });
+
+  it('Check delete button works', () => {
+    const view = wall();
+    window.dispatchEvent(new Event('DOMContentLoaded'));
+    const deleteButton = view.querySelector('.post__delete-button');
+    deleteButton.click();
+    window.confirm = () => true;
+    expect(deletePost).toBeCalled();
+  });
+
+  // A este caso no se ha podido acceder, ya que depende de que editStatus sea true
+  it('Check the text area has content and edit status is true when the post button is clicked', () => {
+    const view = wall();
+    window.dispatchEvent(new Event('DOMContentLoaded'));
+    const editButton = view.querySelector('.post__edit-button');
+    editButton.click();
+    const postButton = view.querySelector('.wall__post-button');
+    const textArea = view.querySelector('.wall__modal-add-text');
+    textArea.value = 'hola';
+    postButton.click();
+    expect(editPost).toBeCalled();
   });
 });

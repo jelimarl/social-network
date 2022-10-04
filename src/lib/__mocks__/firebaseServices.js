@@ -10,18 +10,37 @@ export const onGetPost = jest.fn((callback) => {
   callback([{
     id: '123erf',
     data: () => ({
-      name: 'Nunito', uid: '123esd', email: 'nunito@gmail.com', photo: 'urlphoto', contentPost: 'Hola', counterLikes: 0, date: 1243563, usersLikes: [],
+      name: 'Nunito', uid: '12ab34cd56ef78gh', email: 'nunito@gmail.com', photo: 'urlphoto', contentPost: 'Hola', counterLikes: 0, date: 1243563, usersLikes: [],
     }),
   }]);
 });
 
-export const getPost = jest.fn(() => Promise.resolve());
+export const getPost = jest.fn(() => Promise.resolve({
+  id: '123erf',
+  data: () => ({
+    name: 'Nunito', uid: '12ab34cd56ef78gh', email: 'nunito@gmail.com', photo: 'urlphoto', contentPost: 'Hola', counterLikes: 0, date: 1243563, usersLikes: [],
+  }),
+}));
 
 export const saveDisplayName = jest.fn(() => Promise.resolve());
 
 export const savePost = jest.fn(() => Promise.resolve());
 
-export const editPost = jest.fn(() => Promise.resolve());
+export const editPost = jest.fn(() => Promise.resolve({
+  id: '123erf',
+  data: () => ({
+    name: 'Nunito', uid: '12ab34cd56ef78gh', email: 'nunito@gmail.com', photo: 'urlphoto', contentPost: 'Hola', counterLikes: 0, date: 1243563, usersLikes: [],
+  }),
+}));
+
+export const deletePost = jest.fn(() => Promise.resolve());
+
+export const likePost = jest.fn(() => Promise.resolve({
+  id: '123erf',
+  data: () => ({
+    name: 'Nunito', uid: '12ab34cd56ef78gh', email: 'nunito@gmail.com', photo: 'urlphoto', contentPost: 'Hola', counterLikes: 0, date: 1243563, usersLikes: [],
+  }),
+}));
 
 export const logOut = jest.fn(() => Promise.resolve());
 
